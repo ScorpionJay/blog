@@ -1,0 +1,30 @@
+<div id="footer" >
+	<% if(theme.author_img){ %>
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	<% } %>
+	<% if(theme.author.intro_line1 || theme.author.intro_line2){ %>
+	<section class="info">
+		<p> <%= theme.author.intro_line1 %> <br/>
+			<%= theme.author.intro_line2 %></p>
+	</section>
+	 <% } %>
+
+			<%  Array.prototype.S=String.fromCharCode(2);
+			  Array.prototype.in_array=function(e){
+    			var r=new RegExp(this.S+e+this.S);
+    			return (r.test(this.S+this.join(this.S)+this.S));
+				};
+				var cc = new Array('by','by-nc','by-nc-nd','by-nc-sa','by-nd','by-sa','zero'); %>
+		<% if (cc.in_array(theme.creative_commons) ) { %>
+				<div class="cc-license">
+          <a href="http://creativecommons.org/licenses/<%= theme.creative_commons %>/4.0" class="cc-opacity" target="_blank">
+            <img src="<%- config.root %>img/cc-<%= theme.creative_commons %>.svg" alt="Creative Commons" />
+          </a>
+        </div>
+    <% } %>
+
+		
+</div>

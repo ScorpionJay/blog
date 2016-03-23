@@ -1,0 +1,123 @@
+##### Menu 菜单
+menu:
+  主页: /
+  归档: /archives
+  项目: /project
+  关于: /about
+## you can create `tags` and `categories` folders in `../source`.
+## And create a `index.md` file in each of them.
+## set `front-matter`as
+## layout: tags (or categories)
+## title: tags (or categories)
+## ---
+
+#### Widgets
+widgets: 
+- category
+- tag
+- links
+- tagcloud
+# - weibo      hiden weibo
+## provide seven widgets:category,tag,rss,archive,tagcloud,links,weibo,douban
+
+
+#### RSS 
+#rss: /atom.xml ## RSS address.
+
+#### Image
+imglogo:
+  enable: true             ## display image logo true/false.
+  //src: img/logo.png        ## `.svg` and `.png` are recommended,please put image into the theme folder `/jacman/source/img`.
+favicon: img/favicon.ico   ## 网站图标 size:32px*32px,`.ico` is recommended,please put image into the theme folder `/jacman/source/img`.     
+apple_icon: img/jacman.jpg ## 苹果设备上的图标，背景不要透明size:114px*114px,please put image into the theme folder `/jacman/source/img`.
+author_img: https://avatars0.githubusercontent.com/u/8603342?v=3&u=d5c989c2b7f53d84c60542d354d7a75a89d9e114&s=140 
+#banner_img: img/favicon.ico ## 博客顶部图片size:1920px*200px+. Banner Picture
+### Theme Color 
+theme_color:
+    theme: '#32383A'
+
+# 代码高亮主题
+# available: default | night
+highlight_theme: night
+
+#### index post is expanding or not 
+index:
+  expand: false           ## default is unexpanding,so you can only see the short description of each post.
+  excerpt_link: Read More  
+
+close_aside: true  #close sidebar in post page if true
+mathjax: false      #enable mathjax if true
+
+### Creative Commons License Support, see http://creativecommons.org/ 
+### you can choose: by , by-nc , by-nc-nd , by-nc-sa , by-nd , by-sa , zero
+creative_commons: none
+
+#### Author information
+author:
+  intro_line1:  "Hello ,I'm Jay."    ## your introduction on the bottom of the page
+  intro_line2:  "This is my blog,believe it or not."  ## the 2nd line
+  # weibo:      2733057954 
+  # tsina:      2733057954 
+  # github:     s9013 
+## if you set them, the corresponding  share button will show on the footer
+
+#### Toc 目录
+toc:
+  article: true   ## 是否在文章中显示目录 show contents in article.
+  aside: true     ## 是否在侧边栏显示目录 show contents in aside.
+## you can set both of the value to true of neither of them.
+## if you don't want display contents in a specified post,you can modify `front-matter` and add `toc: false`.
+
+#### Links 友情链接
+links:
+  开源中国: http://www.oschina.net/
+  IT eBooks: http://www.allitebooks.com/
+  jsfiddle: https://jsfiddle.net
+
+#### Comment 
+duoshuo_shortname: jay99 
+
+#### Share button 分享按钮
+jiathis:
+  enable: false ## if you use jiathis as your share tool,the built-in share tool won't be display.
+  id:    
+  tsina: 
+
+#### Analytics
+google_analytics:
+  enable: false
+  id:        ## e.g. UA-46321946-2 your google analytics ID.
+  site:      ## e.g. wuchong.me your google analytics site or set the value as auto.
+## You MUST upgrade to Universal Analytics first!
+## https://developers.google.com/analytics/devguides/collection/upgrade/?hl=zh_CN
+baidu_tongji:
+  enable: ture
+  sitecode:  ## 百度统计站点特征码 e.g. e6d1f421bbc9962127a50488f9ed37d1 your baidu tongji site code
+cnzz_tongji:
+  enable: false
+  siteid:    ## e.g. 1253575964 your cnzz tongji site id
+
+#### Miscellaneous
+ShowCustomFont: true  ## you can change custom font in `variable.styl` and `font.styl` which in the theme folder `/jacman/source/css`.
+fancybox: true        ## if you use gallery post or want use fancybox please set the value to true.
+totop: true           ## if you want to scroll to top in every post set the value to true
+
+
+#### Custom Search
+google_cse: 
+  enable: false
+  cx:   ## e.g. 018294693190868310296:abnhpuysycw your Custom Search ID.
+## https://www.google.com/cse/ 
+## To enable the custom search You must create a "search" folder in '/source' and a "index.md" file
+## set the 'front-matter' as
+## layout: search 
+## title: search
+## ---
+baidu_search:     ## http://zn.baidu.com/
+  enable: false
+  id:   ## e.g. "783281470518440642"  for your baidu search id
+  site: http://zhannei.baidu.com/cse/search  ## your can change to your site instead of the default site
+  
+tinysou_search:     ## http://tinysou.com/
+  enable: false
+  id:  'da4dd0c75d48636f5e1d'  
