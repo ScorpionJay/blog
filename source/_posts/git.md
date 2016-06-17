@@ -58,3 +58,18 @@ tags:
 ~~~bash
 git push origin --delete gh-pages
 ~~~
+
+
+## 回滚
+
+~~~
+git log --pretty=oneline
+
+git reset --hard HEAD^
+
+git reset --hard HEAD~2
+
+git reset --hard 3628164
+
+git push -u origin master -f
+~~~
