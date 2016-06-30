@@ -1,17 +1,13 @@
-title: git
-date: 2015-10-06 15:40:43
+title: git学习一
+date: 2015-1-1 15:40:43
 tags:
 - git
 ---
 
-学习git
+git 版本管理工具
 <!--more-->
-	ssh
-	
-	ssh-keygen -t rsa -C "youremail@example.com"
 
-	github
-	
+## 基本用法
 	git init 	git初始化
 	git remote	
 	
@@ -54,9 +50,62 @@ tags:
 	path中添加git的安装路径cmd 例如D:\git\cmd
 
 
-## 删除远程分支 
+
+
+## 分支
+
+查看本地分支
+~~~
+git branch
+~~~
+
+查看远程分支
+~~~
+git branch -r
+~~~
+
+查看本地和远程分支
+~~~
+git branch -a
+~~~
+
+切换分支
+~~~
+git branch 分支名
+~~~
+
+本地分支推送到远程分支
+~~~
+git push origin test  
+~~~
+
+删除本地分支
+~~~
+git branch -d 分支名
+~~~
+
+删除远程分支
+~~~
+git branch -d -r 分支名
+~~~
+
+删除远程分支 ??? 
 ~~~bash
 git push origin --delete gh-pages
+~~~
+
+
+git clone 获取远端git库，只包含了远端git库中的当前工作分支，
+
+如果想要获取其他分支信息，使用git branch -r 来查看，
+
+如果也想获取下来，使用git checkout -b 本地分支名 远程分支名，
+
+如果本地已经存在分支名，则不需要'-b'参数
+
+eg.
+~~~
+git checkout -b gh-pages remotes/origin/gh-pages
 ~~~
 
 
@@ -72,4 +121,15 @@ git reset --hard HEAD~2
 git reset --hard 3628164
 
 git push -u origin master -f
+~~~
+
+## 日志
+查看提交历史信息
+~~~
+git log
+~~~
+
+##合并　？？？
+~~~
+git merge
 ~~~
