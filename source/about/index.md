@@ -2,11 +2,12 @@ title: 关于
 date: 2015-09-22 10:28:49
 ---
 
+~~~
+Name:Jay
 
-		Name:Jay
+Gender: Man
 
-		Gender: Man
+Interest: Like coding. Like fitness.
 
-		Interest: Like coding. Like fitness.
-
-		Email(base64):amF5Lndhbmcuc2NvcnBpb25AcXEuY29t
+Email(base64):amF5Lndhbmcuc2NvcnBpb25AcXEuY29t
+~~~
