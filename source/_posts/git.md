@@ -129,7 +129,23 @@ git push -u origin master -f
 git log
 ~~~
 
-##合并　？？？
+## 合并
 ~~~
 git merge
 ~~~
+
+## 合并提交
+~~~
+git rebase -r HEAD~2
+
+将第二个的pick修改为s :wq保存
+
+输入新的comments :wq保存
+
+git log --pretty=oneline 可以查看
+
+提交到远程
+git push --force
+~~~
+
+
