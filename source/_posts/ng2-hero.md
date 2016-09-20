@@ -65,3 +65,12 @@ ngIf 隐藏空的
 class.selected 是括在一对方括号中的。 这就是“属性绑定”的语法
 
 [class.selected]='hero === selectedHero'
+
+
+多个组件
+
+服务
+
+路由
+
+HTTP

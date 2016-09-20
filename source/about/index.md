@@ -11,3 +11,5 @@ Interest: Like coding. Like fitness.
 
 Email(base64):amF5Lndhbmcuc2NvcnBpb25AcXEuY29t
 ~~~
+
+<a href='/cv.html'>CV</a>
