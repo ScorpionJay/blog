@@ -1,6 +1,6 @@
 # Site
 title: Jay
-subtitle: 生活就是块磨刀石，去了棱角，损了锋芒，但是别忘了曾经的那份血性！
+subtitle: Life is simple.You make choices and you don't look back.
 description: Always On The Way.
 author: Jay
 language: zh-CN
@@ -8,8 +8,8 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://jay99.win
-root: /
+url: http://onejay.top/blog
+root: /blog
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 
@@ -76,5 +76,5 @@ sitemap:
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repository: git@github.com:ScorpionJay/ScorpionJay.github.io.git
+  repository: git@github.com:ScorpionJay/blog.git
   branch: master 
