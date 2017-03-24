@@ -132,11 +132,20 @@ git log
 ## 合并
 ~~~
 git merge
+
+Git fetch origin master
+
+
+本地需要提交
+
+git merge 
+
+然后手动解决冲突
 ~~~
 
 ## 合并提交
 ~~~
-git rebase -r HEAD~2
+git rebase -i HEAD~2
 
 将第二个的pick修改为s :wq保存
 
