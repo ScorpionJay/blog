@@ -82,12 +82,12 @@ ssh （安全外壳协议）
 
 	在.ssh文件夹下新建config文件，内容如下
 
-	Host github
+	Host github.com
 	    HostName github.com
 	    User git
 	    IdentityFile ~/.ssh/github
 	 
-	Host gitcafe
+	Host gitcafe.com
 	    HostName gitcafe.com
 	    User git
 	    IdentityFile ~/.ssh/id_rsa
@@ -95,10 +95,10 @@ ssh （安全外壳协议）
 ### 测试
 ~~~bash
 Jay@VAIO MINGW64 ~/Desktop
-$ ssh -T git@github
+$ ssh -T git@github.com
 Hi s9013! You've successfully authenticated, but GitHub does not provide shell access.
 
 Jay@VAIO MINGW64 ~/Desktop
-$ ssh -T git@gitcafe
+$ ssh -T git@gitcafe.com
 Hi scorpion! You've successfully authenticated, but GitCafe does not provide shell access.
 ~~~
