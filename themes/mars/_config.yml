@@ -70,7 +70,6 @@ toc:
 
 #### Links 友情链接
 links:
-  极客头条: http://geek.csdn.net
   开源中国: http://www.oschina.net/
   博客园: http://www.cnblogs.com/
   IT eBooks: http://www.allitebooks.com/
@@ -78,7 +77,7 @@ links:
   gitbook: https://s9013.gitbooks.io/book/content/
 
 #### Comment 
-duoshuo_shortname: jay99 
+# duoshuo_shortname: jay99 
 
 #### Share button 分享按钮
 jiathis:
