@@ -17,3 +17,11 @@ rm
 
 move
 
+touch
+
+
+lsof -i:8388
+kill -9 pid
+
+telnet 47.98.xx.xx 3000
+
