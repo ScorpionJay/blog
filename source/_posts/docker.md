@@ -2,7 +2,11 @@
 title: docker
 date: 2018-09-26 15:23:59
 tags:
+  - docker
 ---
+
+docker
+
 <!--more-->
 
 # docker
@@ -49,8 +53,7 @@ sudo docker exec -it container_name  /bin/bash
 
 sudo docker build -t react:v1 .
 sudo docker images
-sudo docker run --name react react:v2 
-
+sudo docker run --name react react:v2
 ```
 
 ## [docker-compose](https://docs.docker.com/compose/install/#install-compose)
@@ -78,9 +81,3 @@ docker run --name myjenkins -p 8080:8080 -v /var/jenkins_home jenkins
 
 docker start myjenkins
 ```
-
-
-
-
-
-
