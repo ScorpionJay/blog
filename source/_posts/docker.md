@@ -54,6 +54,15 @@ sudo docker exec -it container_name  /bin/bash
 sudo docker build -t react:v1 .
 sudo docker images
 sudo docker run --name react react:v2
+
+
+# 打包镜像提交到 dockerhub
+
+docker login -u scorpionjay
+
+docker images
+docker tag python_node scorpionjay/python_node
+docker push scorpionjay/python_node
 ```
 
 ## [docker-compose](https://docs.docker.com/compose/install/#install-compose)
