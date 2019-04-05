@@ -55,46 +55,46 @@ git 版本管理工具
 
 ## 分支
 
-查看本地分支
+> 查看本地分支
 
 ```
 git branch
 ```
 
-查看远程分支
+> 查看远程分支
 
 ```
 git branch -r
 ```
 
-查看本地和远程分支
+> 查看本地和远程分支
 
 ```
 git branch -a
 ```
 
-切换分支
+> 切换分支
 
 ```
 git branch 分支名
 ```
 
-本地分支推送到远程分支
+> 本地分支推送到远程分支
 
 ```
 git push origin test
 ```
 
-删除本地分支
+> 删除本地分支
 
 ```
 git branch -d 分支名
 ```
 
-删除远程分支
+> 删除远程分支
 
-```bash
-git push origin --delete gh-pages
+```
+git push origin --delete 分支名
 ```
 
 git clone 获取远端 git 库，只包含了远端 git 库中的当前工作分支，
@@ -161,4 +161,19 @@ git log --pretty=oneline 可以查看
 
 提交到远程
 git push --force
+```
+
+## 远程地址
+
+> 查看远程地址
+
+```
+git remote -v
+```
+
+> 修改远程地址
+
+```
+git remote rm origin
+gir remote add origin git@github.com:ScorpionJay/blog.git
 ```
