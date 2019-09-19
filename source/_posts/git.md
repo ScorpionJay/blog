@@ -1,4 +1,4 @@
-title: git 学习一
+title: git 学习
 date: 2015-1-1 15:40:43
 tags:
 
@@ -176,4 +176,27 @@ git remote -v
 ```
 git remote rm origin
 gir remote add origin git@github.com:ScorpionJay/blog.git
+```
+
+## 常见问题
+
+> gitignore 不起作用
+
+```
+git rm -r --cached .
+git add .
+git commit -m 'update .gitignore'
+```
+
+> 忽略/恢复跟踪
+
+```
+git update-index --assume-unchanged src/utils/config.js  #忽略跟踪
+git update-index --no-assume-unchanged src/utils/config.js #恢复跟踪
+```
+
+> 分支强制覆盖
+
+```
+git push origin test:master -f  //将test分支强制（-f）推送到主分支master
 ```

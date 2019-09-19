@@ -4,6 +4,10 @@ date: 2019-04-07 00:07:52
 tags:
 ---
 
+mac python3
+
+<!--more-->
+
 ```
 Error: The following directories are not writable by your user:
 /usr/local/share/man/man5

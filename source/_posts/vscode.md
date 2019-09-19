@@ -21,3 +21,9 @@ extension 一堆，如何管理，有这么一个牛 b 的插件 Settings Sync
 勾选 gist 就可以了，有提示，自己复制好，只会出现一次
 
 Make sure to copy your new personal access token now. You won’t be able to see it again!
+
+> vscode 推荐插件
+
+- Prettier - Code formatter 格式化代码
+- ES7 React/Redux/GraphQL/React-Native snippets 代码块
+- gitlens 版本管理插件
