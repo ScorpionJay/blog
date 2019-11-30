@@ -1,4 +1,4 @@
-title: git 学习
+title: git 操作手册
 date: 2015-1-1 15:40:43
 tags:
 
@@ -52,6 +52,13 @@ git 版本管理工具
     git pull origin gh-pages 强制拉服务器的
     'git' 不是内部或外部命令，也不是可运行的程序
     path中添加git的安装路径cmd 例如D:\git\cmd
+
+## git pull
+
+```
+git pull = git fetch + git merge
+git pull --rebase = git fetch + git rebase
+```
 
 ## 分支
 
@@ -131,6 +138,7 @@ git push -u origin master -f
 
 ```
 git log
+git log --pretty=oneline
 ```
 
 ## 合并
@@ -138,7 +146,7 @@ git log
 ```
 git merge
 
-Git fetch origin master
+git fetch origin master
 
 
 本地需要提交
@@ -176,6 +184,12 @@ git remote -v
 ```
 git remote rm origin
 gir remote add origin git@github.com:ScorpionJay/blog.git
+```
+
+> 可以添加多个远程地址
+
+```
+gir remote add 远程名称 git@github.com:ScorpionJay/blog.git
 ```
 
 ## 常见问题

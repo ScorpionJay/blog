@@ -2,7 +2,6 @@ title: git ssh
 date: 2015-10-06 14:02:59
 tags:
 
-- hexo
 - git
 
 ---
@@ -61,7 +60,7 @@ ssh （安全外壳协议）
     添加你的 SSH key 到 github上面去
     https://github.com/settings/ssh
 
-    Jay@VAIO MINGW64 ~
+    Jay@PC MINGW64 ~
     $ ssh -T git@github.com
     The authenticity of host 'github.com (192.30.252.128)' can't be established.
     RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.
@@ -70,7 +69,7 @@ ssh （安全外壳协议）
 
     需要输入yes，默认尽然不是yes
 
-    Jay@VAIO MINGW64 ~
+    Jay@PC MINGW64 ~
     $ ssh -T git@github.com
     The authenticity of host 'github.com (192.30.252.129)' can't be established.
     RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.
@@ -97,11 +96,11 @@ ssh （安全外壳协议）
 ### 测试
 
 ```bash
-Jay@VAIO MINGW64 ~/Desktop
+Jay@PC MINGW64 ~/Desktop
 $ ssh -T git@github.com
 Hi s9013! You've successfully authenticated, but GitHub does not provide shell access.
 
-Jay@VAIO MINGW64 ~/Desktop
+Jay@PC MINGW64 ~/Desktop
 $ ssh -T git@gitcafe.com
 Hi scorpion! You've successfully authenticated, but GitCafe does not provide shell access.
 ```
