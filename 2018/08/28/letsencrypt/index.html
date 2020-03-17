@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Jay">
 <meta property="og:description" content="use letsencrypt to configure nginx https">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-18T10:39:06.049Z">
+<meta property="og:updated_time" content="2020-03-17T13:02:34.617Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="letsencrypt">
 <meta name="twitter:description" content="use letsencrypt to configure nginx https">
@@ -103,7 +103,7 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#出问题了"><span class="toc-number">1.</span> <span class="toc-text">出问题了</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#REF"><span class="toc-number">2.</span> <span class="toc-text">REF</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#出问题了"><span class="toc-number">1.</span> <span class="toc-text">出问题了</span></a></li></ol>
 		
 		</div>
 		
@@ -116,13 +116,13 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">nginx 配置ssl</span><br><span class="line">listen 443 ssl;</span><br><span class="line">server_name nway.top;</span><br><span class="line">index index.html;</span><br><span class="line">root  /home/wwwroot;</span><br><span class="line"></span><br><span class="line">ssl_certificate      /etc/letsencrypt/live/nway.top/fullchain.pem;</span><br><span class="line">ssl_certificate_key  /etc/letsencrypt/live/nway.top/privkey.pem;</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">http转向https</span><br><span class="line">server &#123;</span><br><span class="line">        listen       80;</span><br><span class="line">        server_name  localhost;</span><br><span class="line">		rewrite ^(.*) https://$server_name$1 permanent;</span><br><span class="line">｝</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">过期执行</span><br><span class="line">./certbot-auto renew</span><br></pre></td></tr></table></figure>
-<h2 id="出问题了"><a href="#出问题了" class="headerlink" title="出问题了"></a>出问题了</h2><p>还没搞定</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./certbot-auto certonly --standalone --email jay.wang.scorpion@gmail.com -d api.shanghaim.net</span><br></pre></td></tr></table></figure>
-<h2 id="REF"><a href="#REF" class="headerlink" title="REF"></a>REF</h2><ul>
-<li><a href="https://letsencrypt.org/" target="_blank" rel="noopener">https://letsencrypt.org/</a></li>
-<li><a href="https://certbot.eff.org/lets-encrypt/centos6-nginx" target="_blank" rel="noopener">https://certbot.eff.org/lets-encrypt/centos6-nginx</a></li>
-<li><a href="https://linuxstory.org/deploy-lets-encrypt-ssl-certificate-with-certbot/" target="_blank" rel="noopener">HTTPS 简介及使用官方工具 Certbot 配置 Let’s Encrypt SSL 安全证书详细教程</a></li>
-</ul>
+<h2 id="出问题了"><a href="#出问题了" class="headerlink" title="出问题了"></a>出问题了</h2><p>nginx 配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name m.shanghaim.net;</span><br><span class="line">    # rewrite ^(.*) https://$server_name$1 permanent; # http转https</span><br><span class="line">    #配置 nginx 、验证域名所有权,</span><br><span class="line">    #这一步是为了通过 Let’s Encrypt 的验证，验证域名是属于我的管理之下。</span><br><span class="line">    location ^~ /.well-known/ &#123;</span><br><span class="line">            root /home/jay/html/;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">~~~</span><br></pre></td></tr></table></figure>
+<p>./certbot-auto certonly –standalone –email <a href="mailto:jay.wang.scorpion@gmail.com" target="_blank" rel="noopener">jay.wang.scorpion@gmail.com</a> -d m.shanghaim.net</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>快到期执行<br>更新证书<br>./certbot-auto renew</p>
+<p>重启 nginx<br>nginx -s reload</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## REF</span><br><span class="line"></span><br><span class="line">- [https://letsencrypt.org/](https://letsencrypt.org/)</span><br><span class="line">- [https://certbot.eff.org/lets-encrypt/centos6-nginx](https://certbot.eff.org/lets-encrypt/centos6-nginx)</span><br><span class="line">- [HTTPS 简介及使用官方工具 Certbot 配置 Let’s Encrypt SSL 安全证书详细教程](https://linuxstory.org/deploy-lets-encrypt-ssl-certificate-with-certbot/)</span><br></pre></td></tr></table></figure>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -178,7 +178,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#出问题了"><span class="toc-number">1.</span> <span class="toc-text">出问题了</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#REF"><span class="toc-number">2.</span> <span class="toc-text">REF</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#出问题了"><span class="toc-number">1.</span> <span class="toc-text">出问题了</span></a></li></ol>
  
   </div>
 
@@ -202,11 +202,11 @@
 			
 		
 			
-				<li><a href="/blog/tags/spring/" title="spring">spring<sup>8</sup></a></li>
+				<li><a href="/blog/tags/html/" title="html">html<sup>8</sup></a></li>
 			
 		
 			
-				<li><a href="/blog/tags/html/" title="html">html<sup>8</sup></a></li>
+				<li><a href="/blog/tags/spring/" title="spring">spring<sup>8</sup></a></li>
 			
 		
 			
@@ -222,15 +222,19 @@
 			
 		
 			
-				<li><a href="/blog/tags/react-native/" title="react native">react native<sup>5</sup></a></li>
-			
-		
-			
 				<li><a href="/blog/tags/mongodb/" title="mongodb">mongodb<sup>5</sup></a></li>
 			
 		
 			
+				<li><a href="/blog/tags/react-native/" title="react native">react native<sup>5</sup></a></li>
+			
+		
+			
 				<li><a href="/blog/tags/css/" title="css">css<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/node/" title="node">node<sup>3</sup></a></li>
 			
 		
 			
@@ -242,23 +246,11 @@
 			
 		
 			
-				<li><a href="/blog/tags/node/" title="node">node<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/blog/tags/励志/" title="励志">励志<sup>2</sup></a></li>
-			
-		
-			
 				<li><a href="/blog/tags/hibernate/" title="hibernate">hibernate<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/blog/tags/web/" title="web">web<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/blog/tags/git/" title="git">git<sup>2</sup></a></li>
+				<li><a href="/blog/tags/angularjs/" title="angularjs">angularjs<sup>2</sup></a></li>
 			
 		
 			
@@ -266,11 +258,19 @@
 			
 		
 			
-				<li><a href="/blog/tags/python/" title="python">python<sup>2</sup></a></li>
+				<li><a href="/blog/tags/docker/" title="docker">docker<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/blog/tags/docker/" title="docker">docker<sup>2</sup></a></li>
+				<li><a href="/blog/tags/git/" title="git">git<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/励志/" title="励志">励志<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/web/" title="web">web<sup>2</sup></a></li>
 			
 		
 		</ul>
