@@ -69,10 +69,36 @@ server {
 
 ## 出问题了
 
-还没搞定
+nginx 配置
 
 ```
-./certbot-auto certonly --standalone --email jay.wang.scorpion@gmail.com -d api.shanghaim.net
+server {
+    listen 80;
+    server_name m.shanghaim.net;
+    # rewrite ^(.*) https://$server_name$1 permanent; # http转https
+    #配置 nginx 、验证域名所有权,
+    #这一步是为了通过 Let’s Encrypt 的验证，验证域名是属于我的管理之下。
+    location ^~ /.well-known/ {
+            root /home/jay/html/;
+    }
+}
+~~~
+
+```
+
+./certbot-auto certonly --standalone --email jay.wang.scorpion@gmail.com -d m.shanghaim.net
+
+```
+
+```
+
+快到期执行
+更新证书
+./certbot-auto renew
+
+重启 nginx
+nginx -s reload
+
 ```
 
 ## REF
@@ -80,3 +106,4 @@ server {
 - [https://letsencrypt.org/](https://letsencrypt.org/)
 - [https://certbot.eff.org/lets-encrypt/centos6-nginx](https://certbot.eff.org/lets-encrypt/centos6-nginx)
 - [HTTPS 简介及使用官方工具 Certbot 配置 Let’s Encrypt SSL 安全证书详细教程](https://linuxstory.org/deploy-lets-encrypt-ssl-certificate-with-certbot/)
+```
