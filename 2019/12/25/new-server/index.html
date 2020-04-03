@@ -12,17 +12,18 @@
     
 
     
-    <meta name="description" content="nginx1234yum install nginxcd /etc/nginxnginx node123456789101112131415wget https://nodejs.org/dist/v12.14.0/node-v12.14.0-linux-x64.tar.xzcd /optmkdir nodetar xvf node-v12.14.0-linux-x64.tar.xzln -s /">
+    <meta name="description" content="新服务器配置">
+<meta name="keywords" content="linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="new server">
 <meta property="og:url" content="https://scorpionjay.github.io/blog/2019/12/25/new-server/index.html">
 <meta property="og:site_name" content="Jay">
-<meta property="og:description" content="nginx1234yum install nginxcd /etc/nginxnginx node123456789101112131415wget https://nodejs.org/dist/v12.14.0/node-v12.14.0-linux-x64.tar.xzcd /optmkdir nodetar xvf node-v12.14.0-linux-x64.tar.xzln -s /">
+<meta property="og:description" content="新服务器配置">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-03-17T13:04:08.611Z">
+<meta property="og:updated_time" content="2020-04-03T15:57:45.337Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="new server">
-<meta name="twitter:description" content="nginx1234yum install nginxcd /etc/nginxnginx node123456789101112131415wget https://nodejs.org/dist/v12.14.0/node-v12.14.0-linux-x64.tar.xzcd /optmkdir nodetar xvf node-v12.14.0-linux-x64.tar.xzln -s /">
+<meta name="twitter:description" content="新服务器配置">
 
     
     
@@ -107,7 +108,9 @@
 		
 		</div>
 		
-		<h2 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">yum install nginx</span><br><span class="line"></span><br><span class="line">cd /etc/nginx</span><br><span class="line">nginx</span><br></pre></td></tr></table></figure>
+		<p>新服务器配置</p>
+<a id="more"></a>
+<h2 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">yum install nginx</span><br><span class="line"></span><br><span class="line">cd /etc/nginx</span><br><span class="line">nginx</span><br></pre></td></tr></table></figure>
 <h2 id="node"><a href="#node" class="headerlink" title="node"></a>node</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">wget https://nodejs.org/dist/v12.14.0/node-v12.14.0-linux-x64.tar.xz</span><br><span class="line"></span><br><span class="line">cd /opt</span><br><span class="line">mkdir node</span><br><span class="line"></span><br><span class="line">tar xvf node-v12.14.0-linux-x64.tar.xz</span><br><span class="line"></span><br><span class="line">ln -s /opt/node/bin/node /usr/local/bin/node</span><br><span class="line">ln -s /opt/node/bin/npm /usr/local/bin/npm</span><br><span class="line"></span><br><span class="line">npm -v</span><br><span class="line"></span><br><span class="line">node -v</span><br><span class="line"></span><br><span class="line">npm config set registry http://registry.npm.taobao.org/</span><br></pre></td></tr></table></figure>
 <p>pm2</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install -g pm2</span><br><span class="line"></span><br><span class="line">ln -s /opt/node/bin/pm2 /usr/local/bin/</span><br></pre></td></tr></table></figure>
@@ -134,6 +137,11 @@
 <div class="article-catetags">
 
 
+  <div class="article-tags">
+  
+  <span></span> <a href="/blog/tags/linux/">linux</a>
+  </div>
+
 </div>
 
 
@@ -153,6 +161,14 @@
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/blog/2020/04/03/clean-code/" title="clean-code">
+  <strong>上一篇：</strong><br/>
+  <span>
+  clean-code</span>
+</a>
+</div>
+
 
 <div class="next">
 <a href="/blog/2019/12/03/webpack-1/"  title="webpack">
@@ -211,7 +227,7 @@
 			
 		
 			
-				<li><a href="/blog/tags/linux/" title="linux">linux<sup>5</sup></a></li>
+				<li><a href="/blog/tags/linux/" title="linux">linux<sup>6</sup></a></li>
 			
 		
 			
@@ -315,7 +331,7 @@
   <div class="tagcloudlist">
     <p class="asidetitle">标签云</p>
     <div class="tagcloudlist clearfix">
-       <a href="/blog/tags/android/" style="font-size: 10px;">android</a> <a href="/blog/tags/angularjs/" style="font-size: 11.25px;">angularjs</a> <a href="/blog/tags/bootstrap/" style="font-size: 11.25px;">bootstrap</a> <a href="/blog/tags/centos/" style="font-size: 10px;">centos</a> <a href="/blog/tags/cordova/" style="font-size: 10px;">cordova</a> <a href="/blog/tags/css/" style="font-size: 13.75px;">css</a> <a href="/blog/tags/docker/" style="font-size: 11.25px;">docker</a> <a href="/blog/tags/flutter/" style="font-size: 10px;">flutter</a> <a href="/blog/tags/front-end/" style="font-size: 10px;">front-end</a> <a href="/blog/tags/git/" style="font-size: 11.25px;">git</a> <a href="/blog/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/blog/tags/hibernate/" style="font-size: 11.25px;">hibernate</a> <a href="/blog/tags/html/" style="font-size: 17.5px;">html</a> <a href="/blog/tags/ide/" style="font-size: 10px;">ide</a> <a href="/blog/tags/ionic/" style="font-size: 10px;">ionic</a> <a href="/blog/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/blog/tags/java/" style="font-size: 18.75px;">java</a> <a href="/blog/tags/jpa/" style="font-size: 10px;">jpa</a> <a href="/blog/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/blog/tags/js/" style="font-size: 20px;">js</a> <a href="/blog/tags/linux/" style="font-size: 15px;">linux</a> <a href="/blog/tags/mongodb/" style="font-size: 15px;">mongodb</a> <a href="/blog/tags/mybatis/" style="font-size: 10px;">mybatis</a> <a href="/blog/tags/node/" style="font-size: 12.5px;">node</a> <a href="/blog/tags/npm/" style="font-size: 10px;">npm</a> <a href="/blog/tags/python/" style="font-size: 11.25px;">python</a> <a href="/blog/tags/react/" style="font-size: 16.25px;">react</a> <a href="/blog/tags/react-native/" style="font-size: 15px;">react native</a> <a href="/blog/tags/spring/" style="font-size: 17.5px;">spring</a> <a href="/blog/tags/spring-mvc/" style="font-size: 12.5px;">spring mvc</a> <a href="/blog/tags/sql/" style="font-size: 10px;">sql</a> <a href="/blog/tags/web/" style="font-size: 11.25px;">web</a> <a href="/blog/tags/webpack/" style="font-size: 10px;">webpack</a> <a href="/blog/tags/励志/" style="font-size: 11.25px;">励志</a> <a href="/blog/tags/工具/" style="font-size: 15px;">工具</a> <a href="/blog/tags/微信/" style="font-size: 12.5px;">微信</a> <a href="/blog/tags/扯淡/" style="font-size: 10px;">扯淡</a> <a href="/blog/tags/树莓派/" style="font-size: 10px;">树莓派</a>
+       <a href="/blog/tags/JS/" style="font-size: 10px;">JS</a> <a href="/blog/tags/android/" style="font-size: 10px;">android</a> <a href="/blog/tags/angularjs/" style="font-size: 11.11px;">angularjs</a> <a href="/blog/tags/bootstrap/" style="font-size: 11.11px;">bootstrap</a> <a href="/blog/tags/centos/" style="font-size: 10px;">centos</a> <a href="/blog/tags/cordova/" style="font-size: 10px;">cordova</a> <a href="/blog/tags/css/" style="font-size: 13.33px;">css</a> <a href="/blog/tags/docker/" style="font-size: 11.11px;">docker</a> <a href="/blog/tags/flutter/" style="font-size: 10px;">flutter</a> <a href="/blog/tags/front-end/" style="font-size: 10px;">front-end</a> <a href="/blog/tags/git/" style="font-size: 11.11px;">git</a> <a href="/blog/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/blog/tags/hibernate/" style="font-size: 11.11px;">hibernate</a> <a href="/blog/tags/html/" style="font-size: 17.78px;">html</a> <a href="/blog/tags/ide/" style="font-size: 10px;">ide</a> <a href="/blog/tags/ionic/" style="font-size: 10px;">ionic</a> <a href="/blog/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/blog/tags/java/" style="font-size: 18.89px;">java</a> <a href="/blog/tags/jpa/" style="font-size: 10px;">jpa</a> <a href="/blog/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/blog/tags/js/" style="font-size: 20px;">js</a> <a href="/blog/tags/linux/" style="font-size: 15.56px;">linux</a> <a href="/blog/tags/mongodb/" style="font-size: 14.44px;">mongodb</a> <a href="/blog/tags/mybatis/" style="font-size: 10px;">mybatis</a> <a href="/blog/tags/node/" style="font-size: 12.22px;">node</a> <a href="/blog/tags/npm/" style="font-size: 10px;">npm</a> <a href="/blog/tags/python/" style="font-size: 11.11px;">python</a> <a href="/blog/tags/react/" style="font-size: 16.67px;">react</a> <a href="/blog/tags/react-native/" style="font-size: 14.44px;">react native</a> <a href="/blog/tags/spring/" style="font-size: 17.78px;">spring</a> <a href="/blog/tags/spring-mvc/" style="font-size: 12.22px;">spring mvc</a> <a href="/blog/tags/sql/" style="font-size: 10px;">sql</a> <a href="/blog/tags/web/" style="font-size: 11.11px;">web</a> <a href="/blog/tags/webpack/" style="font-size: 10px;">webpack</a> <a href="/blog/tags/励志/" style="font-size: 11.11px;">励志</a> <a href="/blog/tags/工具/" style="font-size: 14.44px;">工具</a> <a href="/blog/tags/开发规范/" style="font-size: 10px;">开发规范</a> <a href="/blog/tags/微信/" style="font-size: 12.22px;">微信</a> <a href="/blog/tags/扯淡/" style="font-size: 10px;">扯淡</a> <a href="/blog/tags/树莓派/" style="font-size: 10px;">树莓派</a>
     </div>
   </div>
 
