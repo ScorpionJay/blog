@@ -96,11 +96,11 @@ ssh （安全外壳协议）
 ### 测试
 
 ```bash
-Jay@PC MINGW64 ~/Desktop
+Jay@PC ~/Desktop
 $ ssh -T git@github.com
 Hi s9013! You've successfully authenticated, but GitHub does not provide shell access.
 
-Jay@PC MINGW64 ~/Desktop
+Jay@PC ~/Desktop
 $ ssh -T git@gitcafe.com
 Hi scorpion! You've successfully authenticated, but GitCafe does not provide shell access.
 ```

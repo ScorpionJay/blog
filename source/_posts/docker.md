@@ -16,10 +16,15 @@ docker
 - image
 - container
 
-## docker install
+## 安装 docker
 
 ```
+# 安装docker.io 是ubuntu团队维护的一个包
 sudo apt install docker.io
+
+# 启动docker
+systemctl start docker
+
 
 # Verify
 sudo docker run  hello-world
@@ -70,12 +75,16 @@ docker push scorpionjay/python_node
 ```
 install
 
-sudo curl -L "https://github.com/docker/compose/releases/download/1.22.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+# 下载docker-compose 网络太慢可以到github手动下载
+sudo curl -L "https://github.com/docker/compose/releases/download/1.26.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
 
 sudo chmod +x /usr/local/bin/docker-compose
 
+# 软连接
 sudo ln -sf /usr/local/bin/docker-compose /usr/bin/docker-compose
 
+# 验证版本
 docker-compose --version
 
 

@@ -2,7 +2,12 @@
 title: new server
 date: 2019-12-25 11:50:10
 tags:
+  - linux
 ---
+
+新服务器配置
+
+<!--more-->
 
 ## nginx
 
