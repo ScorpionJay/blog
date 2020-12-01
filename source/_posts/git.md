@@ -182,6 +182,13 @@ git remote -v
 > 修改远程地址
 
 ```
+#git remote set-url <name> <url>
+git remote set-url origin url
+```
+
+or
+
+```
 git remote rm origin
 gir remote add origin git@github.com:ScorpionJay/blog.git
 ```
@@ -190,6 +197,12 @@ gir remote add origin git@github.com:ScorpionJay/blog.git
 
 ```
 gir remote add 远程名称 git@github.com:ScorpionJay/blog.git
+```
+
+## git 区分大小写
+
+```
+git config --global core.ignorecase false
 ```
 
 ## 常见问题
