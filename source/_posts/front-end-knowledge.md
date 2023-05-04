@@ -14,9 +14,9 @@ tags:
 
 ### 简短的历史
 
-1995 年出来, 网景公司 LiveScript，JScript；EcmaScript 262 TC39
+1995 年出来, 网景公司 LiveScript，JScript；ECMAScript 262 TC39
 
-EcamScript Dom Bom
+ECMAScript Dom Bom
 
 ### 数据类型
 
@@ -270,13 +270,9 @@ function throttle(fn,delay){
   let curTime = Date.now();
 
   return function(){
-    let context = this,
-        args = arguments;
-        nowTime = Date.now()
-
-    if(nowTime - curTime >= delay){
+    if(Date.now() - curTime >= delay){
       curTime = Date.now();
-      return fn.apply(context,args)
+      return fn.apply(this,arguments)
     }
   }
 }
