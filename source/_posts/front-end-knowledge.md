@@ -25,7 +25,7 @@ var、const、let
 const 变量指向的内存地址不能变
 
 数据类型分为基本数据类型和引用数据类型。基本数据类型存储在栈里，引用数据类型存储在堆里。
-基本数据类型有：null、undefine、string、number、boolean、symbol、bigint
+基本数据类型有：null、undefined、string、number、boolean、symbol、bigint
 引用数据类型有：Object、Function、Array、RegExp、Date
 
 typeof 操作符判断基本数据类型
@@ -104,6 +104,10 @@ function objectName(object) {
 > getPrototypeOf
 
 Object.getPrototypeOf() 方法返回指定对象的原型（内部[[Prototype]]属性的值）。
+
+```
+__proto__
+```
 
 #### Array
 
@@ -193,8 +197,18 @@ for(let i=1;i<10;i++){
 ```
 for in
 
-for of
+
 ```
+
+#### for of
+
+for-of 语句是一种严格的迭代语句，用于遍历可迭代对象的元素
+
+### 基本引用类型
+
+### 集合引用类型
+
+### 函数
 
 ### 原型链
 
@@ -241,6 +255,8 @@ foo()
 
 事件被触发 n 秒后再执行回调，如果在这 n 内事件又触发，则重新计算时间
 
+使用场景：联想搜索、页面 resize
+
 ```
 function debounce(fn,wait){
   let timer = null;
@@ -261,9 +277,30 @@ function debounce(fn,wait){
 }
 ```
 
+```
+function debounce(fn,wait){
+  let timer = null;
+
+  return function(){
+    if(timer){
+      clearTimeout(timer);
+      timer = null;
+    }
+
+    timer = setTimeout(()=>{
+      fn.apply(this,arguments)
+    },wait)
+  }
+}
+```
+
 ### 截流
 
 规定的时间内，只有一次触发事件执行
+
+使用场景：按钮查询、滚动条加载更多
+
+> 闭包的实现
 
 ```
 function throttle(fn,delay){
@@ -276,6 +313,12 @@ function throttle(fn,delay){
     }
   }
 }
+```
+
+> 定时器的实现
+
+```
+
 ```
 
 ## 移动端适配
