@@ -1,0 +1,519 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="baidu-site-verification" content="X5tqKoHyW3" />
+  
+    <title>老项目改造 | Jay</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Jay">
+    
+
+    
+    <meta name="description" content="老项目改造，删除无效变量">
+<meta property="og:type" content="article">
+<meta property="og:title" content="老项目改造">
+<meta property="og:url" content="https://scorpionjay.github.io/blog/2023/01/01/reconstruction-of-old-projects/index.html">
+<meta property="og:site_name" content="Jay">
+<meta property="og:description" content="老项目改造，删除无效变量">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-01-01T07:55:04.000Z">
+<meta property="article:modified_time" content="2024-03-28T09:35:24.704Z">
+<meta property="article:author" content="Jay">
+<meta property="article:tag" content="react 工具">
+<meta name="twitter:card" content="summary">
+
+    
+    
+    <link rel="icon" href="/blog/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/blog/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/blog/img/jacman.jpg">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/blog/" title="Jay">Jay</a></h1>
+				<h2 class="blog-motto">Life is simple.You make choices and you don&#39;t look back.</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/blog/">主页</a></li>
+					
+						<li><a href="/blog/archives">归档</a></li>
+					
+						<li><a href="/blog/project">项目</a></li>
+					
+						<li><a href="/blog/about">关于</a></li>
+					
+					<li>
+						<form class="search">
+							<label>Search</label>
+							<input type="text" class="st-default-search-input" autocomplete="off" maxlength="20" placeholder="搜索" />
+						</form>
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+
+
+
+
+
+
+
+    <div id="container">
+
+
+
+
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/blog/2023/01/01/reconstruction-of-old-projects/" title="老项目改造" itemprop="url">老项目改造</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/blog/about" title="Jay" target="_blank" itemprop="author">Jay</a>
+		
+  <p class="article-time">
+    <time datetime="2023-01-01T07:55:04.000Z" itemprop="datePublished"> 发表于 2023-01-01</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%99%E4%B8%80%E4%B8%AA-vscode-%E6%8F%92%E4%BB%B6"><span class="toc-number">2.</span> <span class="toc-text">写一个 vscode 插件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-babel"><span class="toc-number">3.</span> <span class="toc-text">使用 babel</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E9%81%8D%E5%8E%86"><span class="toc-number">3.1.</span> <span class="toc-text">文件遍历</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C-AST-%E4%BB%A3%E7%A0%81"><span class="toc-number">3.2.</span> <span class="toc-text">操作 AST 代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95"><span class="toc-number">3.3.</span> <span class="toc-text">测试</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<p>老项目改造，删除无效变量</p>
+<span id="more"></span>
+
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>接手一个项目，历史原因，技术都落后几年了，不想去动，但这几年一直围着这个项目在弄，实在是烦了，不说全翻，对于有点洁癖的还是把实在受不了、碍事的改掉。<br>没有规矩就没有方圆，eslint，prettier，commitlint 这几个早早就加上，痛苦的就是 lint 虽然加上了，但是要关闭一堆 lint，这加个了寂寞，尤其这玩意 no-unused-vars，<br>vscode 一看，好多灰色的变量，干了干了。</p>
+<h2 id="写一个-vscode-插件"><a href="#写一个-vscode-插件" class="headerlink" title="写一个 vscode 插件"></a>写一个 vscode 插件</h2><p>可以写一个 vscode 插件，如何写，可参照<a href="https://code.visualstudio.com/api/get-started/your-first-extension">官方指导</a></p>
+<blockquote>
+<p>安装脚手架</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g yo generator-code</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>运行脚手架</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yo code</span><br></pre></td></tr></table></figure>
+
+<p>按照选项选择</p>
+<h2 id="使用-babel"><a href="#使用-babel" class="headerlink" title="使用 babel"></a>使用 babel</h2><ul>
+<li>@babel&#x2F;parser 生成 AST 语法树</li>
+<li>@babel&#x2F;traverse 遍历 AST 语法树</li>
+<li>@babel&#x2F;generator 根据 AST 语法树生成代码</li>
+<li>@babel&#x2F;types 工具库</li>
+</ul>
+<h3 id="文件遍历"><a href="#文件遍历" class="headerlink" title="文件遍历"></a>文件遍历</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * list dir files</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">const fs = require(&quot;fs&quot;);</span><br><span class="line">const path = require(&quot;path&quot;);</span><br><span class="line"></span><br><span class="line">function dir(basePath) &#123;</span><br><span class="line">  const list = [];</span><br><span class="line"></span><br><span class="line">  function _dir(basePath, filePath) &#123;</span><br><span class="line">    filePath = filePath || basePath;</span><br><span class="line"></span><br><span class="line">    const files = fs.readdirSync(filePath);</span><br><span class="line">    files.forEach((filename) =&gt; &#123;</span><br><span class="line">      const filedir = path.join(filePath, filename);</span><br><span class="line">      const stats = fs.statSync(filedir, function(err, stats) &#123;</span><br><span class="line">        if (err) &#123;</span><br><span class="line">          console.warn(&quot;fail&quot;);</span><br><span class="line">          return;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;);</span><br><span class="line"></span><br><span class="line">      var isFile = stats.isFile();</span><br><span class="line">      var isDir = stats.isDirectory();</span><br><span class="line">      if (isFile) &#123;</span><br><span class="line">        list.push(filedir);</span><br><span class="line">        // console.log(filedir);</span><br><span class="line">      &#125;</span><br><span class="line">      if (isDir) &#123;</span><br><span class="line">        _dir(basePath, filedir);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  _dir(basePath);</span><br><span class="line"></span><br><span class="line">  return list;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">module.exports = dir;</span><br></pre></td></tr></table></figure>
+
+<h3 id="操作-AST-代码"><a href="#操作-AST-代码" class="headerlink" title="操作 AST 代码"></a>操作 AST 代码</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * @author Jay</span><br><span class="line"> * @since 2022-12-28</span><br><span class="line"> * @description 删除没有使用的代码</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">const types = require(&quot;@babel/types&quot;);</span><br><span class="line">const parser = require(&quot;@babel/parser&quot;);</span><br><span class="line">const traverse = require(&quot;@babel/traverse&quot;).default;</span><br><span class="line">const generate = require(&quot;@babel/generator&quot;).default;</span><br><span class="line"></span><br><span class="line">function removeUnusedCode(code) &#123;</span><br><span class="line">  // 解析</span><br><span class="line">  const ast = parser.parse(code, &#123;</span><br><span class="line">    sourceType: &quot;module&quot;, // module</span><br><span class="line">    plugins: [&quot;jsx&quot;], // jsx</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  // 生成ast</span><br><span class="line">  traverse(ast, &#123;</span><br><span class="line">    // 处理 const var let</span><br><span class="line">    VariableDeclaration(path) &#123;</span><br><span class="line">      const &#123; node &#125; = path;</span><br><span class="line">      const &#123; declarations &#125; = node;</span><br><span class="line"></span><br><span class="line">      try &#123;</span><br><span class="line">        node.declarations = declarations.filter((declaration) =&gt; &#123;</span><br><span class="line">          const &#123; id &#125; = declaration;</span><br><span class="line">          if (types.isObjectPattern(id)) &#123;</span><br><span class="line">            // path.scope.getBinding(name).referenced 判断变量是否被引用</span><br><span class="line">            // 通过filter移除掉没有使用的变量</span><br><span class="line">            id.properties = id.properties.filter((property) =&gt; &#123;</span><br><span class="line">              const binding = path.scope.getBinding(property.key.name);</span><br><span class="line">              // referenced 变量是否被引用</span><br><span class="line">              // constantViolations 变量被重新定义的地方</span><br><span class="line">              const &#123; referenced, constantViolations &#125; = binding;</span><br><span class="line">              if (!referenced &amp;&amp; constantViolations.length &gt; 0) &#123;</span><br><span class="line">                constantViolations.map((violationPath) =&gt; &#123;</span><br><span class="line">                  // 如果变量未使用过，被修改的语句也需要一起移除</span><br><span class="line">                  violationPath.remove();</span><br><span class="line">                &#125;);</span><br><span class="line">              &#125;</span><br><span class="line">              return referenced;</span><br><span class="line">            &#125;);</span><br><span class="line">            // 如果对象中所有变量都没有被应用，则该对象整个移除</span><br><span class="line">            return id.properties.length &gt; 0;</span><br><span class="line">          &#125; else &#123;</span><br><span class="line">            // const a = 1;</span><br><span class="line">            // @ts-ignore</span><br><span class="line">            const binding = path.scope.getBinding(id.name);</span><br><span class="line">            const &#123; referenced, constantViolations &#125; = binding;</span><br><span class="line">            if (!referenced &amp;&amp; constantViolations.length &gt; 0) &#123;</span><br><span class="line">              constantViolations.map((violationPath) =&gt; &#123;</span><br><span class="line">                violationPath.remove();</span><br><span class="line">              &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">            return referenced;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        if (node.declarations.length === 0) &#123;</span><br><span class="line">          path.remove();</span><br><span class="line">        &#125;</span><br><span class="line">      &#125; catch (error) &#123;&#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    // 处理 import</span><br><span class="line">    ImportDeclaration(path) &#123;</span><br><span class="line">      const &#123; node &#125; = path;</span><br><span class="line">      const &#123; specifiers &#125; = node;</span><br><span class="line">      if (!specifiers.length) &#123;</span><br><span class="line">        return;</span><br><span class="line">      &#125;</span><br><span class="line">      node.specifiers = specifiers.filter((specifier) =&gt; &#123;</span><br><span class="line">        const &#123; local &#125; = specifier;</span><br><span class="line"></span><br><span class="line">        // React 不删除</span><br><span class="line">        if (local.name === &quot;React&quot;) return true;</span><br><span class="line"></span><br><span class="line">        const binding = path.scope.getBinding(local.name);</span><br><span class="line">        return !!binding.referenced;</span><br><span class="line">      &#125;);</span><br><span class="line">      if (node.specifiers.length === 0) &#123;</span><br><span class="line">        path.remove();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    // 处理 function</span><br><span class="line">    FunctionDeclaration(path) &#123;</span><br><span class="line">      const &#123; node &#125; = path;</span><br><span class="line">      const &#123; id &#125; = node;</span><br><span class="line">      const binding = path.scope.getBinding(id.name);</span><br><span class="line">      if (!binding?.referenced) &#123;</span><br><span class="line">        path.remove();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    // 函数调用表达式</span><br><span class="line">    // CallExpression(path) &#123;</span><br><span class="line">    //   // 删除console</span><br><span class="line">    //   if (path.node.callee &amp;&amp; t.isIdentifier(path.node.callee.property, &#123; name: &quot;console&quot; &#125;)) &#123;</span><br><span class="line">    //     path.remove();</span><br><span class="line">    //   &#125;</span><br><span class="line"></span><br><span class="line">    //   // if (path.node.callee &amp;&amp; t.isIdentifier(path.node.callee.property, &#123; name: &quot;log&quot; &#125;)) &#123;</span><br><span class="line">    //   //   // path.remove();</span><br><span class="line">    //   //   // console.log(path.node.callee.property);</span><br><span class="line">    //   //   path.node.callee.property.name = &quot;info&quot;;</span><br><span class="line">    //   // &#125;</span><br><span class="line">    // &#125;,</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  // 生成code 字符串</span><br><span class="line">  return generate(ast, &#123;</span><br><span class="line">    retainLines: true,</span><br><span class="line">    compact: false,</span><br><span class="line">    auxiliaryCommentAfter: undefined,</span><br><span class="line">    jsescOption: &#123;</span><br><span class="line">      es6: false,</span><br><span class="line">      concise: false,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;).code;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">module.exports = removeUnusedCode;</span><br><span class="line"></span><br><span class="line">const s = `</span><br><span class="line">const a = 1;</span><br><span class="line">const b = 1;</span><br><span class="line"></span><br><span class="line">console.log(a);</span><br><span class="line"></span><br><span class="line">const aa = () =&gt; &#123;&#125;;</span><br><span class="line"></span><br><span class="line">import React,     &#123; Component, PureComponent &#125; from &quot;react&quot;;</span><br><span class="line"></span><br><span class="line">export class Hello extends Component &#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line">    this.state = &#123;</span><br><span class="line">      list: [], //列表</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    return          &lt;div&gt;test123&lt;/div&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default Hello;</span><br><span class="line"></span><br><span class="line">`;</span><br><span class="line"></span><br><span class="line">const ss = `</span><br><span class="line">import React from &quot;react&quot;;</span><br><span class="line">import &#123; hot &#125; from &quot;react-hot-loader/root&quot;;</span><br><span class="line">import &#123; Provider &#125; from &quot;react-redux&quot;;</span><br><span class="line">import createStore from &quot;@/redux/store/configureStore&quot;;</span><br><span class="line">import Routes from &quot;@/routes&quot;;</span><br><span class="line">import &quot;./themes&quot;;</span><br><span class="line"></span><br><span class="line">class App extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;Provider store=&#123;createStore()&#125;&gt;</span><br><span class="line">        &lt;Routes /&gt;</span><br><span class="line">      &lt;/Provider&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default hot(App);</span><br><span class="line">`;</span><br><span class="line"></span><br><span class="line">const result = removeUnusedCode(ss);</span><br><span class="line">console.log(result);</span><br></pre></td></tr></table></figure>
+
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// 遍历文件</span><br><span class="line">// const files = dir(&quot;file path&quot;);</span><br><span class="line"></span><br><span class="line">files.forEach((item) =&gt; &#123;</span><br><span class="line">  if (!item.includes(&quot;.js&quot;)) return;</span><br><span class="line">  fs.readFile(item, &quot;utf-8&quot;, function(err, data) &#123;</span><br><span class="line">    if (err) throw err;</span><br><span class="line">    data = removeUnusedCode(data);</span><br><span class="line">    fs.writeFile(item, data, &#123; flag: &quot;w&quot; &#125;, function(err) &#123;</span><br><span class="line">      if (err) &#123;</span><br><span class="line">        throw err;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">  //</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/blog/tags/react-工具/">react 工具</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://scorpionjay.github.io/blog/2023/01/01/reconstruction-of-old-projects/" data-title="老项目改造 | Jay" data-tsina="" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/blog/2023/03/16/monorepo/" title="monorepo">
+  <strong>上一篇：</strong><br/>
+  <span>
+  monorepo</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/blog/2021/02/04/nexus/"  title="nexus">
+ <strong>下一篇：</strong><br/> 
+ <span>nexus
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+</div>  
+
+
+
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%99%E4%B8%80%E4%B8%AA-vscode-%E6%8F%92%E4%BB%B6"><span class="toc-number">2.</span> <span class="toc-text">写一个 vscode 插件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-babel"><span class="toc-number">3.</span> <span class="toc-text">使用 babel</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E9%81%8D%E5%8E%86"><span class="toc-number">3.1.</span> <span class="toc-text">文件遍历</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C-AST-%E4%BB%A3%E7%A0%81"><span class="toc-number">3.2.</span> <span class="toc-text">操作 AST 代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95"><span class="toc-number">3.3.</span> <span class="toc-text">测试</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/blog/tags/js/" title="js">js<sup>31</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/java/" title="java">java<sup>15</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/html/" title="html">html<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/react/" title="react">react<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/spring/" title="spring">spring<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/linux/" title="linux">linux<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/工具/" title="工具">工具<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/mongodb/" title="mongodb">mongodb<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/react-native/" title="react native">react native<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/css/" title="css">css<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/docker/" title="docker">docker<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/node/" title="node">node<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/微信/" title="微信">微信<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/spring-mvc/" title="spring mvc">spring mvc<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/hibernate/" title="hibernate">hibernate<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/angularjs/" title="angularjs">angularjs<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/bootstrap/" title="bootstrap">bootstrap<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/git/" title="git">git<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/励志/" title="励志">励志<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/web/" title="web">web<sup>2</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.oschina.net/" target="_blank" title="开源中国">开源中国</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.cnblogs.com/" target="_blank" title="博客园">博客园</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.allitebooks.com/" target="_blank" title="IT eBooks">IT eBooks</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://jsfiddle.net" target="_blank" title="jsfiddle">jsfiddle</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://s9013.gitbooks.io/book/content/" target="_blank" title="gitbook">gitbook</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+  <div class="tagcloudlist">
+    <p class="asidetitle">标签云</p>
+    <div class="tagcloudlist clearfix">
+       <a href="/blog/tags/CI-CD/" style="font-size: 10px;">CI CD</a> <a href="/blog/tags/JS/" style="font-size: 10px;">JS</a> <a href="/blog/tags/android/" style="font-size: 10px;">android</a> <a href="/blog/tags/angularjs/" style="font-size: 11.25px;">angularjs</a> <a href="/blog/tags/bootstrap/" style="font-size: 11.25px;">bootstrap</a> <a href="/blog/tags/centos/" style="font-size: 10px;">centos</a> <a href="/blog/tags/cordova/" style="font-size: 10px;">cordova</a> <a href="/blog/tags/css/" style="font-size: 13.75px;">css</a> <a href="/blog/tags/docker/" style="font-size: 12.5px;">docker</a> <a href="/blog/tags/flutter/" style="font-size: 10px;">flutter</a> <a href="/blog/tags/front-end/" style="font-size: 10px;">front-end</a> <a href="/blog/tags/git/" style="font-size: 11.25px;">git</a> <a href="/blog/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/blog/tags/hibernate/" style="font-size: 11.25px;">hibernate</a> <a href="/blog/tags/html/" style="font-size: 17.5px;">html</a> <a href="/blog/tags/ide/" style="font-size: 10px;">ide</a> <a href="/blog/tags/ionic/" style="font-size: 10px;">ionic</a> <a href="/blog/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/blog/tags/java/" style="font-size: 18.75px;">java</a> <a href="/blog/tags/jpa/" style="font-size: 10px;">jpa</a> <a href="/blog/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/blog/tags/js/" style="font-size: 20px;">js</a> <a href="/blog/tags/linux/" style="font-size: 16.25px;">linux</a> <a href="/blog/tags/mongodb/" style="font-size: 15px;">mongodb</a> <a href="/blog/tags/mybatis/" style="font-size: 10px;">mybatis</a> <a href="/blog/tags/node/" style="font-size: 12.5px;">node</a> <a href="/blog/tags/npm/" style="font-size: 10px;">npm</a> <a href="/blog/tags/python/" style="font-size: 11.25px;">python</a> <a href="/blog/tags/react/" style="font-size: 17.5px;">react</a> <a href="/blog/tags/react-native/" style="font-size: 15px;">react native</a> <a href="/blog/tags/react-%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">react 工具</a> <a href="/blog/tags/sdk/" style="font-size: 10px;">sdk</a> <a href="/blog/tags/spring/" style="font-size: 17.5px;">spring</a> <a href="/blog/tags/spring-mvc/" style="font-size: 12.5px;">spring mvc</a> <a href="/blog/tags/sql/" style="font-size: 10px;">sql</a> <a href="/blog/tags/ssh/" style="font-size: 10px;">ssh</a> <a href="/blog/tags/web/" style="font-size: 11.25px;">web</a> <a href="/blog/tags/webpack/" style="font-size: 10px;">webpack</a> <a href="/blog/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 10px;">人工智能</a> <a href="/blog/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/blog/tags/%E5%8A%B1%E5%BF%97/" style="font-size: 11.25px;">励志</a> <a href="/blog/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 15px;">工具</a> <a href="/blog/tags/%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/" style="font-size: 10px;">开发规范</a> <a href="/blog/tags/%E5%BE%AE%E4%BF%A1/" style="font-size: 12.5px;">微信</a> <a href="/blog/tags/%E6%89%AF%E6%B7%A1/" style="font-size: 10px;">扯淡</a> <a href="/blog/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 10px;">架构</a> <a href="/blog/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/" style="font-size: 10px;">树莓派</a> <a href="/blog/tags/%E7%9B%91%E6%8E%A7/" style="font-size: 10px;">监控</a>
+    </div>
+  </div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Jay. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+
+			
+		
+
+		
+</div>
+</footer>
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js"></script>
+<script src="/blog/js/gallery.js"></script>
+<script src="/blog/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.navbar').click(function(){
+      $('header nav').toggleClass('shownav');
+    });
+    var myWidth = 0;
+    function getSize(){
+      if( typeof( window.innerWidth ) == 'number' ) {
+        myWidth = window.innerWidth;
+      } else if( document.documentElement && document.documentElement.clientWidth) {
+        myWidth = document.documentElement.clientWidth;
+      };
+    };
+    var m = $('#main'),
+        a = $('#asidepart'),
+        c = $('.closeaside'),
+        o = $('.openaside');
+    c.click(function(){
+      a.addClass('fadeOut').css('display', 'none');
+      o.css('display', 'block').addClass('fadeIn');
+      m.addClass('moveMain');
+    });
+    o.click(function(){
+      o.css('display', 'none').removeClass('beforeFadeIn');
+      a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');
+      m.removeClass('moveMain');
+    });
+    $(window).scroll(function(){
+      o.css("top",Math.max(80,260-$(this).scrollTop()));
+    });
+    
+          getSize();
+          if (myWidth >= 1024) {
+            c.click();
+          }
+    
+    $(window).resize(function(){
+      getSize();
+      if (myWidth >= 1024) {
+        $('header nav').removeClass('shownav');
+      }else{
+        m.removeClass('moveMain');
+        a.css('display', 'block').removeClass('fadeOut');
+        o.css('display', 'none');
+        
+        $('#toc.toc-aside').css('display', 'none');
+        
+      }
+    });
+  });
+</script>
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    var ai = $(".article-content>iframe"),
+      ae = $(".article-content>embed"),
+      t = $("#toc"),
+      ta = $("#toc.toc-aside"),
+      o = $(".openaside"),
+      c = $(".closeaside");
+    if (ai.length > 0) {
+      ai.wrap('<div class="video-container" />');
+    }
+    if (ae.length > 0) {
+      ae.wrap('<div class="video-container" />');
+    }
+    c.click(function () {
+      ta.css("display", "block").addClass("fadeIn");
+    });
+    o.click(function () {
+      ta.css("display", "none");
+    });
+    $(window).scroll(function () {
+      ta.css("top", Math.max(140, 320 - $(this).scrollTop()));
+    });
+  });
+</script>
+    
+<link
+  rel="stylesheet"
+  href="/blog/fancybox/jquery.fancybox.css"
+  media="screen"
+  type="text/css"
+/>
+<script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+  $(document).ready(function () {
+    $(".article-content").each(function (i) {
+      $(this)
+        .find("img")
+        .each(function () {
+          if ($(this).parent().hasClass("fancybox")) return;
+          var alt = this.alt;
+          if (alt) $(this).after('<span class="caption">' + alt + "</span>");
+          $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+        });
+      $(this)
+        .find(".fancybox")
+        .each(function () {
+          $(this).attr("rel", "article" + i);
+        });
+    });
+    if ($.fancybox) {
+      $(".fancybox").fancybox();
+    }
+  });
+</script>
+
+
+<!-- Analytics Begin -->
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?aafa6fbc5fea21c51d792808bdaa3e44";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/blog/img/scrollup.png"/></a>
+	</div>
+	<script src="/blog/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+  </body>
+</html>
+
+
+
+<!--fork me on github-->
+<a id="forkme" href="https://github.com/ScorpionJay" target="_blank"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_darkblue_121621.png?resize=149%2C149" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>

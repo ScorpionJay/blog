@@ -1,0 +1,594 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="baidu-site-verification" content="X5tqKoHyW3" />
+  
+    <title>develop sdk | Jay</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Jay">
+    
+
+    
+    <meta name="description" content="从 0 到 1 开发一个 sdk">
+<meta property="og:type" content="article">
+<meta property="og:title" content="develop sdk">
+<meta property="og:url" content="https://scorpionjay.github.io/blog/2020/08/28/develop-sdk/index.html">
+<meta property="og:site_name" content="Jay">
+<meta property="og:description" content="从 0 到 1 开发一个 sdk">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-08-28T07:14:52.000Z">
+<meta property="article:modified_time" content="2024-03-28T09:35:24.682Z">
+<meta property="article:author" content="Jay">
+<meta property="article:tag" content="js">
+<meta property="article:tag" content="sdk">
+<meta name="twitter:card" content="summary">
+
+    
+    
+    <link rel="icon" href="/blog/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/blog/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/blog/img/jacman.jpg">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/blog/" title="Jay">Jay</a></h1>
+				<h2 class="blog-motto">Life is simple.You make choices and you don&#39;t look back.</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/blog/">主页</a></li>
+					
+						<li><a href="/blog/archives">归档</a></li>
+					
+						<li><a href="/blog/project">项目</a></li>
+					
+						<li><a href="/blog/about">关于</a></li>
+					
+					<li>
+						<form class="search">
+							<label>Search</label>
+							<input type="text" class="st-default-search-input" autocomplete="off" maxlength="20" placeholder="搜索" />
+						</form>
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+
+
+
+
+
+
+
+    <div id="container">
+
+
+
+
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/blog/2020/08/28/develop-sdk/" title="develop sdk" itemprop="url">develop sdk</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/blog/about" title="Jay" target="_blank" itemprop="author">Jay</a>
+		
+  <p class="article-time">
+    <time datetime="2020-08-28T07:14:52.000Z" itemprop="datePublished"> 发表于 2020-08-28</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%80%E5%8F%91%E4%B8%80%E4%B8%AA-sdk"><span class="toc-number">1.</span> <span class="toc-text">开发一个 sdk</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%86%99%E8%BF%99%E4%B8%AA"><span class="toc-number">1.1.</span> <span class="toc-text">为什么写这个</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%8F%91%E5%89%8D%E7%9A%84%E5%87%86%E5%A4%87"><span class="toc-number">1.2.</span> <span class="toc-text">开发前的准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%8F%91"><span class="toc-number">1.3.</span> <span class="toc-text">开发</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<p>从 0 到 1 开发一个 sdk</p>
+<span id="more"></span>
+
+<p><strong>人一旦悟透了就会变得沉默，不是没有与人相处的能力，而是没有了逢人作戏的兴趣。——鲁迅</strong></p>
+<h1 id="开发一个-sdk"><a href="#开发一个-sdk" class="headerlink" title="开发一个 sdk"></a>开发一个 sdk</h1><h2 id="为什么写这个"><a href="#为什么写这个" class="headerlink" title="为什么写这个"></a>为什么写这个</h2><p>项目写多了，总有一些常用的工具类，之前的做法是不停的 copy，也没个管理，是否可以将这些常用的方法写在一起，封装成一个库，用的时候直接安装就行了，这样也方便维护统一管理，答案是肯定的，那就开动吧。</p>
+<h2 id="开发前的准备"><a href="#开发前的准备" class="headerlink" title="开发前的准备"></a>开发前的准备</h2><blockquote>
+<p>打包工具</p>
+</blockquote>
+<p>要写一个库，先选一个打包工具，目前流行的有 webpack rollup，如何选择呢。webpack 适合用来写项目，里面有 html css javascript 这种。rollup 更适合用来写工具，react vue 都是用它来打包的。</p>
+<blockquote>
+<p>模块</p>
+</blockquote>
+<p>模块有 iife cjs amd umd esm。为了更好的用上 tree sharking，我们主推 esm，当然作为一个合格的库，其他的模块方式我们也要支持的。</p>
+<blockquote>
+<p>sdk 名字</p>
+</blockquote>
+<p>起名太复杂了，各种重复，fffutil-demo 就这么随意吧，哈哈。</p>
+<h2 id="开发"><a href="#开发" class="headerlink" title="开发"></a>开发</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># 新建一个文件夹</span><br><span class="line">mkdir fffutil-demo</span><br><span class="line"></span><br><span class="line"># 切换目录</span><br><span class="line">cd fffutil-demo</span><br><span class="line"></span><br><span class="line"># npm初始化，一路到底，生成package.json</span><br><span class="line">npm init</span><br><span class="line"></span><br><span class="line"># rollup</span><br><span class="line">npm i rollup -D</span><br></pre></td></tr></table></figure>
+
+<p>新建 src 文件夹，创建 index.js 文件</p>
+<p>写一个方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function foo() &#123;</span><br><span class="line">  console.log(&quot;foo&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>使用 rollup 打包到 dist 文件夹，模块使用 cjs</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rollup --format=cjs --file=dist/index.js -- src/index.js</span><br></pre></td></tr></table></figure>
+
+<p>看下 dist 文件夹下 index.js 打包出来的内容。</p>
+<p>WTF??? ‘use strict’; 写的 foo 方法呢？因为 rollup 天然的支持 tree sharking，foo 方法没有被调用也没有导出，认为写的是一个废代码，就默认给扔了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export function foo() &#123;</span><br><span class="line">  console.log(&quot;foo&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>加一个导出，再打包，就看到 foo 方法了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#x27;use strict&#x27;;</span><br><span class="line"></span><br><span class="line">Object.defineProperty(exports, &#x27;__esModule&#x27;, &#123; value: true &#125;);</span><br><span class="line"></span><br><span class="line">function foo() &#123;</span><br><span class="line">  console.log(&quot;foo&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">exports.foo = foo;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>打出其他模块的包</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">rollup --format=es --file=dist/index.es.js -- src/index.js</span><br><span class="line"></span><br><span class="line">rollup --format=umd  --output.name=fffutil --file=dist/index.umd.js --input=src/index.js</span><br><span class="line"></span><br><span class="line">rollup --format=iife  --output.name=fffutil --file=dist/index.iife.js --input=src/index.js</span><br></pre></td></tr></table></figure>
+
+<p>命令行里敲那么长的命令太复杂了，创建一个 rollup.config.js 文件，在 package.json script 里加上命令</p>
+<p>在根路径下创建 rollup.config.js</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const config = &#123;</span><br><span class="line">  input: &quot;src/index.js&quot;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    file: &quot;dist/index.cjs.js&quot;,</span><br><span class="line">    format: &quot;cjs&quot;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">export default config;</span><br></pre></td></tr></table></figure>
+
+<p>package.json script 中添加</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;build&quot;: &quot;rollup -c rollup.config.js&quot;</span><br></pre></td></tr></table></figure>
+
+<p>执行 npm run build 即可打包,这样一次只能打包一种模式的包，改造下 rollup 配置文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">const outputs = [</span><br><span class="line">  &#123;</span><br><span class="line">    file: &quot;dist/index.cjs.js&quot;,</span><br><span class="line">    format: &quot;cjs&quot;,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    file: &quot;dist/index.es.js&quot;,</span><br><span class="line">    format: &quot;es&quot;,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    file: &quot;dist/index.umd.js&quot;,</span><br><span class="line">    format: &quot;umd&quot;,</span><br><span class="line">    name: &quot;fffutil&quot;,</span><br><span class="line">  &#125;,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">const config = outputs.map((item) =&gt; (&#123;</span><br><span class="line">  input: &quot;src/index.js&quot;,</span><br><span class="line">  output: item,</span><br><span class="line">&#125;));</span><br><span class="line"></span><br><span class="line">export default config;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>再次执行，即可一次打出多种包</p>
+<p>到此我们的 sdk 已经写好了，那么如何测试呢?</p>
+<p>umd 的我们只需要在 html 中引入 js 即可测试，创建 test 文件下，写一个 html 文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot; /&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;</span><br><span class="line">    &lt;title&gt;test&lt;/title&gt;</span><br><span class="line">    &lt;script src=&quot;../dist/index.umd.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">  &lt;/head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    test</span><br><span class="line">  &lt;/body&gt;</span><br><span class="line">  &lt;script&gt;</span><br><span class="line">    fffutil.foo();</span><br><span class="line">  &lt;/script&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>打开浏览器，我们会在控制台看到打印 foo 方法。</p>
+<p>esm 的需要通过 npm link 来测试了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">jay$ yarn link</span><br><span class="line">yarn link v1.19.1</span><br><span class="line">success Registered &quot;fffutil&quot;.</span><br><span class="line">info You can now run `yarn link &quot;fffutil-demo&quot;` in the projects where you want to use this package and it will be used instead.</span><br><span class="line">✨  Done in 0.04s.</span><br></pre></td></tr></table></figure>
+
+<p>在测试的项目中执行 yarn link fffutil-demo</p>
+<p>发生错误 (!) Unresolved dependencies</p>
+<p>这里需要安装@rollup&#x2F;plugin-node-resolve 插件 用来查找外部的依赖</p>
+<p>源码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import &#123; foo &#125; from &quot;fffutil-demo&quot;;</span><br><span class="line"></span><br><span class="line">console.log(foo);</span><br></pre></td></tr></table></figure>
+
+<p>打包</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x27;use strict&#x27;;</span><br><span class="line"></span><br><span class="line">function foo() &#123;</span><br><span class="line">  console.log(&quot;foo&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(foo);</span><br></pre></td></tr></table></figure>
+
+<p>继续完善，使用 rollup-plugin-terser 插件压缩打包后的代码，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i rollup-plugin-terser -D</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import &#123; terser &#125; from &quot;rollup-plugin-terser&quot;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">plugins: [</span><br><span class="line">    terser(&#123;</span><br><span class="line">      compress: &#123; warnings: true, drop_console: false, unused: true &#125;,</span><br><span class="line">      output: &#123;</span><br><span class="line">        comments: /fffutil/i,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;),</span><br><span class="line">  ],</span><br></pre></td></tr></table></figure>
+
+<p>开发不压缩 打包的时候压缩，需要添加环境–environment NODE_ENV:production</p>
+<p>package.json 改造</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">   &quot;dev&quot;: &quot;rollup -cw rollup.config.js --environment NODE_ENV:development&quot;,</span><br><span class="line">   &quot;build&quot;: &quot;rollup -c rollup.config.js --environment NODE_ENV:production&quot;</span><br><span class="line"> &#125;,</span><br></pre></td></tr></table></figure>
+
+<p>rollup.config.js</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">const mode = process.env.NODE_ENV;</span><br><span class="line">const isDev = mode === &quot;development&quot;;</span><br><span class="line"></span><br><span class="line">plugins: [</span><br><span class="line">    !isDev &amp;&amp;</span><br><span class="line">      terser(&#123;</span><br><span class="line">        compress: &#123; warnings: true, drop_console: false, unused: true &#125;,</span><br><span class="line">        output: &#123;</span><br><span class="line">          comments: /fffutil/i,</span><br><span class="line">        &#125;,</span><br><span class="line">      &#125;),</span><br><span class="line">  ],</span><br></pre></td></tr></table></figure>
+
+<p>再来添加一下 banner</p>
+<p>安装 rollup-plugin-json 处理 json</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i rollup-plugin-json -D</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import json from &quot;rollup-plugin-json&quot;;</span><br><span class="line">import &#123; name, version &#125; from &quot;./package.json&quot;;</span><br><span class="line"></span><br><span class="line">const banner = `/*!</span><br><span class="line"> * $&#123;name&#125;.js $&#123;version&#125;</span><br><span class="line"> * Build in $&#123;new Date().getFullYear()&#125;-$&#123;new Date().getMonth() + 1&#125;-$&#123;new Date().getDate()&#125;</span><br><span class="line"> */`;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">plugins: [</span><br><span class="line">    json(),</span><br></pre></td></tr></table></figure>
+
+<p>发不到 npm<br>不是所有文件都发布上去 创建一个.npmginore 文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">logs</span><br><span class="line">*.log</span><br><span class="line">npm-debug.log*</span><br><span class="line">yarn-debug.log*</span><br><span class="line">yarn-error.log*</span><br><span class="line">node_modules</span><br><span class="line">.dea</span><br><span class="line">.DS_Store</span><br><span class="line">.editorconfig</span><br><span class="line">.prettierignore</span><br><span class="line">yarn.lock</span><br><span class="line">.prettierrc</span><br><span class="line">.babelrc</span><br><span class="line">.editorconfig</span><br><span class="line">.gitignore</span><br><span class="line">rollup.config.js</span><br><span class="line">yarn.lock</span><br><span class="line">src</span><br></pre></td></tr></table></figure>
+
+<p>配置 cdn unpkg jsdevlivr<br>在 package.json 中添加配置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&quot;jsdelivr&quot;: &quot;dist/index.umd.js&quot;,</span><br><span class="line">&quot;unpkg&quot;: &quot;dist/index.umd.js&quot;,</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">jay\$ npm login</span><br><span class="line">Username: 你的用户名字</span><br><span class="line">Password: 你的秘密</span><br><span class="line">Email: (this IS public) 你的邮箱</span><br><span class="line">Enter one-time password from your authenticator app:</span><br><span class="line"></span><br><span class="line"># 发布</span><br><span class="line">npm publish</span><br><span class="line"></span><br><span class="line">jays-MacBook-Pro:fffutil jay$ npm publish</span><br><span class="line">npm notice</span><br><span class="line">npm notice 📦  fffutil-demo@0.1.0</span><br><span class="line">npm notice === Tarball Contents ===</span><br><span class="line">npm notice 309B test/index.html</span><br><span class="line">npm notice 168B dist/index.cjs.js</span><br><span class="line">npm notice 106B dist/index.es.js</span><br><span class="line">npm notice 343B dist/index.umd.js</span><br><span class="line">npm notice 590B package.json</span><br><span class="line">npm notice 15B  README.md</span><br><span class="line">npm notice === Tarball Details ===</span><br><span class="line">npm notice name:          fffutil-demo</span><br><span class="line">npm notice version:       0.1.0</span><br><span class="line">npm notice package size:  962 B</span><br><span class="line">npm notice unpacked size: 1.5 kB</span><br><span class="line">npm notice shasum:        cca4f77ba1563f3f0d3e1a7a74bac2a94b717cf4</span><br><span class="line">npm notice integrity:     sha512-WuuVRuhNmCTr/[...]MZaYjZPJCjMSg==</span><br><span class="line">npm notice total files:   6</span><br><span class="line">npm notice</span><br><span class="line">+ fffutil-demo@0.1.0</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><a href="https://www.npmjs.com/package/fffutil-demo">https://www.npmjs.com/package/fffutil-demo</a> 发上去了</p>
+<p>cdn 上也可以打开了</p>
+<p><a href="https://unpkg.com/fffutil-demo@0.1.0/dist/index.umd.js">https://unpkg.com/fffutil-demo@0.1.0/dist/index.umd.js</a></p>
+<p><a href="https://cdn.jsdelivr.net/npm/fffutil-demo@0.1.0">https://cdn.jsdelivr.net/npm/fffutil-demo@0.1.0</a></p>
+<p>测试一下<br>在刚刚的测试 demo 中安装</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i fffutil-demo -S</span><br></pre></td></tr></table></figure>
+
+<p>再次打包,成功，输出如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#x27;use strict&#x27;;</span><br><span class="line"></span><br><span class="line">/*!</span><br><span class="line"> * fffutil-demo.js 0.1.0</span><br><span class="line"> * Build in 2020-8-28</span><br><span class="line"> */</span><br><span class="line">function o()&#123;console.log(&quot;foo &quot;);&#125;</span><br><span class="line"></span><br><span class="line">console.log(o);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>Bingo!!!</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/blog/tags/js/">js</a><a href="/blog/tags/sdk/">sdk</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://scorpionjay.github.io/blog/2020/08/28/develop-sdk/" data-title="develop sdk | Jay" data-tsina="" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/blog/2021/01/28/webssh/" title="webssh">
+  <strong>上一篇：</strong><br/>
+  <span>
+  webssh</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/blog/2020/08/27/sentry/"  title="sentry">
+ <strong>下一篇：</strong><br/> 
+ <span>sentry
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+</div>  
+
+
+
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%80%E5%8F%91%E4%B8%80%E4%B8%AA-sdk"><span class="toc-number">1.</span> <span class="toc-text">开发一个 sdk</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%86%99%E8%BF%99%E4%B8%AA"><span class="toc-number">1.1.</span> <span class="toc-text">为什么写这个</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%8F%91%E5%89%8D%E7%9A%84%E5%87%86%E5%A4%87"><span class="toc-number">1.2.</span> <span class="toc-text">开发前的准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%8F%91"><span class="toc-number">1.3.</span> <span class="toc-text">开发</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/blog/tags/js/" title="js">js<sup>31</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/java/" title="java">java<sup>15</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/html/" title="html">html<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/react/" title="react">react<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/spring/" title="spring">spring<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/linux/" title="linux">linux<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/工具/" title="工具">工具<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/mongodb/" title="mongodb">mongodb<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/react-native/" title="react native">react native<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/css/" title="css">css<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/docker/" title="docker">docker<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/node/" title="node">node<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/微信/" title="微信">微信<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/spring-mvc/" title="spring mvc">spring mvc<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/hibernate/" title="hibernate">hibernate<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/angularjs/" title="angularjs">angularjs<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/bootstrap/" title="bootstrap">bootstrap<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/git/" title="git">git<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/励志/" title="励志">励志<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/web/" title="web">web<sup>2</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.oschina.net/" target="_blank" title="开源中国">开源中国</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.cnblogs.com/" target="_blank" title="博客园">博客园</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.allitebooks.com/" target="_blank" title="IT eBooks">IT eBooks</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://jsfiddle.net" target="_blank" title="jsfiddle">jsfiddle</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://s9013.gitbooks.io/book/content/" target="_blank" title="gitbook">gitbook</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+  <div class="tagcloudlist">
+    <p class="asidetitle">标签云</p>
+    <div class="tagcloudlist clearfix">
+       <a href="/blog/tags/CI-CD/" style="font-size: 10px;">CI CD</a> <a href="/blog/tags/JS/" style="font-size: 10px;">JS</a> <a href="/blog/tags/android/" style="font-size: 10px;">android</a> <a href="/blog/tags/angularjs/" style="font-size: 11.25px;">angularjs</a> <a href="/blog/tags/bootstrap/" style="font-size: 11.25px;">bootstrap</a> <a href="/blog/tags/centos/" style="font-size: 10px;">centos</a> <a href="/blog/tags/cordova/" style="font-size: 10px;">cordova</a> <a href="/blog/tags/css/" style="font-size: 13.75px;">css</a> <a href="/blog/tags/docker/" style="font-size: 12.5px;">docker</a> <a href="/blog/tags/flutter/" style="font-size: 10px;">flutter</a> <a href="/blog/tags/front-end/" style="font-size: 10px;">front-end</a> <a href="/blog/tags/git/" style="font-size: 11.25px;">git</a> <a href="/blog/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/blog/tags/hibernate/" style="font-size: 11.25px;">hibernate</a> <a href="/blog/tags/html/" style="font-size: 17.5px;">html</a> <a href="/blog/tags/ide/" style="font-size: 10px;">ide</a> <a href="/blog/tags/ionic/" style="font-size: 10px;">ionic</a> <a href="/blog/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/blog/tags/java/" style="font-size: 18.75px;">java</a> <a href="/blog/tags/jpa/" style="font-size: 10px;">jpa</a> <a href="/blog/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/blog/tags/js/" style="font-size: 20px;">js</a> <a href="/blog/tags/linux/" style="font-size: 16.25px;">linux</a> <a href="/blog/tags/mongodb/" style="font-size: 15px;">mongodb</a> <a href="/blog/tags/mybatis/" style="font-size: 10px;">mybatis</a> <a href="/blog/tags/node/" style="font-size: 12.5px;">node</a> <a href="/blog/tags/npm/" style="font-size: 10px;">npm</a> <a href="/blog/tags/python/" style="font-size: 11.25px;">python</a> <a href="/blog/tags/react/" style="font-size: 17.5px;">react</a> <a href="/blog/tags/react-native/" style="font-size: 15px;">react native</a> <a href="/blog/tags/react-%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">react 工具</a> <a href="/blog/tags/sdk/" style="font-size: 10px;">sdk</a> <a href="/blog/tags/spring/" style="font-size: 17.5px;">spring</a> <a href="/blog/tags/spring-mvc/" style="font-size: 12.5px;">spring mvc</a> <a href="/blog/tags/sql/" style="font-size: 10px;">sql</a> <a href="/blog/tags/ssh/" style="font-size: 10px;">ssh</a> <a href="/blog/tags/web/" style="font-size: 11.25px;">web</a> <a href="/blog/tags/webpack/" style="font-size: 10px;">webpack</a> <a href="/blog/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 10px;">人工智能</a> <a href="/blog/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/blog/tags/%E5%8A%B1%E5%BF%97/" style="font-size: 11.25px;">励志</a> <a href="/blog/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 15px;">工具</a> <a href="/blog/tags/%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/" style="font-size: 10px;">开发规范</a> <a href="/blog/tags/%E5%BE%AE%E4%BF%A1/" style="font-size: 12.5px;">微信</a> <a href="/blog/tags/%E6%89%AF%E6%B7%A1/" style="font-size: 10px;">扯淡</a> <a href="/blog/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 10px;">架构</a> <a href="/blog/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/" style="font-size: 10px;">树莓派</a> <a href="/blog/tags/%E7%9B%91%E6%8E%A7/" style="font-size: 10px;">监控</a>
+    </div>
+  </div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Jay. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+
+			
+		
+
+		
+</div>
+</footer>
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js"></script>
+<script src="/blog/js/gallery.js"></script>
+<script src="/blog/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.navbar').click(function(){
+      $('header nav').toggleClass('shownav');
+    });
+    var myWidth = 0;
+    function getSize(){
+      if( typeof( window.innerWidth ) == 'number' ) {
+        myWidth = window.innerWidth;
+      } else if( document.documentElement && document.documentElement.clientWidth) {
+        myWidth = document.documentElement.clientWidth;
+      };
+    };
+    var m = $('#main'),
+        a = $('#asidepart'),
+        c = $('.closeaside'),
+        o = $('.openaside');
+    c.click(function(){
+      a.addClass('fadeOut').css('display', 'none');
+      o.css('display', 'block').addClass('fadeIn');
+      m.addClass('moveMain');
+    });
+    o.click(function(){
+      o.css('display', 'none').removeClass('beforeFadeIn');
+      a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');
+      m.removeClass('moveMain');
+    });
+    $(window).scroll(function(){
+      o.css("top",Math.max(80,260-$(this).scrollTop()));
+    });
+    
+          getSize();
+          if (myWidth >= 1024) {
+            c.click();
+          }
+    
+    $(window).resize(function(){
+      getSize();
+      if (myWidth >= 1024) {
+        $('header nav').removeClass('shownav');
+      }else{
+        m.removeClass('moveMain');
+        a.css('display', 'block').removeClass('fadeOut');
+        o.css('display', 'none');
+        
+        $('#toc.toc-aside').css('display', 'none');
+        
+      }
+    });
+  });
+</script>
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    var ai = $(".article-content>iframe"),
+      ae = $(".article-content>embed"),
+      t = $("#toc"),
+      ta = $("#toc.toc-aside"),
+      o = $(".openaside"),
+      c = $(".closeaside");
+    if (ai.length > 0) {
+      ai.wrap('<div class="video-container" />');
+    }
+    if (ae.length > 0) {
+      ae.wrap('<div class="video-container" />');
+    }
+    c.click(function () {
+      ta.css("display", "block").addClass("fadeIn");
+    });
+    o.click(function () {
+      ta.css("display", "none");
+    });
+    $(window).scroll(function () {
+      ta.css("top", Math.max(140, 320 - $(this).scrollTop()));
+    });
+  });
+</script>
+    
+<link
+  rel="stylesheet"
+  href="/blog/fancybox/jquery.fancybox.css"
+  media="screen"
+  type="text/css"
+/>
+<script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+  $(document).ready(function () {
+    $(".article-content").each(function (i) {
+      $(this)
+        .find("img")
+        .each(function () {
+          if ($(this).parent().hasClass("fancybox")) return;
+          var alt = this.alt;
+          if (alt) $(this).after('<span class="caption">' + alt + "</span>");
+          $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+        });
+      $(this)
+        .find(".fancybox")
+        .each(function () {
+          $(this).attr("rel", "article" + i);
+        });
+    });
+    if ($.fancybox) {
+      $(".fancybox").fancybox();
+    }
+  });
+</script>
+
+
+<!-- Analytics Begin -->
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?aafa6fbc5fea21c51d792808bdaa3e44";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/blog/img/scrollup.png"/></a>
+	</div>
+	<script src="/blog/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+  </body>
+</html>
+
+
+
+<!--fork me on github-->
+<a id="forkme" href="https://github.com/ScorpionJay" target="_blank"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_darkblue_121621.png?resize=149%2C149" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>

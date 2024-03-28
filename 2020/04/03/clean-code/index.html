@@ -1,0 +1,636 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="baidu-site-verification" content="X5tqKoHyW3" />
+  
+    <title>clean-code | Jay</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Jay">
+    
+
+    
+    <meta name="description" content="如何写出整洁的代码">
+<meta property="og:type" content="article">
+<meta property="og:title" content="clean-code">
+<meta property="og:url" content="https://scorpionjay.github.io/blog/2020/04/03/clean-code/index.html">
+<meta property="og:site_name" content="Jay">
+<meta property="og:description" content="如何写出整洁的代码">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-04-03T15:54:45.000Z">
+<meta property="article:modified_time" content="2024-03-28T09:35:24.680Z">
+<meta property="article:author" content="Jay">
+<meta property="article:tag" content="JS">
+<meta property="article:tag" content="开发规范">
+<meta name="twitter:card" content="summary">
+
+    
+    
+    <link rel="icon" href="/blog/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/blog/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/blog/img/jacman.jpg">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/blog/" title="Jay">Jay</a></h1>
+				<h2 class="blog-motto">Life is simple.You make choices and you don&#39;t look back.</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/blog/">主页</a></li>
+					
+						<li><a href="/blog/archives">归档</a></li>
+					
+						<li><a href="/blog/project">项目</a></li>
+					
+						<li><a href="/blog/about">关于</a></li>
+					
+					<li>
+						<form class="search">
+							<label>Search</label>
+							<input type="text" class="st-default-search-input" autocomplete="off" maxlength="20" placeholder="搜索" />
+						</form>
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+
+
+
+
+
+
+
+    <div id="container">
+
+
+
+
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/blog/2020/04/03/clean-code/" title="clean-code" itemprop="url">clean-code</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/blog/about" title="Jay" target="_blank" itemprop="author">Jay</a>
+		
+  <p class="article-time">
+    <time datetime="2020-04-03T15:54:45.000Z" itemprop="datePublished"> 发表于 2020-04-03</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Clean-Code"><span class="toc-number">1.</span> <span class="toc-text">Clean Code</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#editorconfig"><span class="toc-number">1.1.</span> <span class="toc-text">editorconfig</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7"><span class="toc-number">1.1.1.</span> <span class="toc-text">常用开发工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-EditorConfig%EF%BC%9F"><span class="toc-number">1.1.2.</span> <span class="toc-text">什么是 EditorConfig？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8"><span class="toc-number">1.1.3.</span> <span class="toc-text">如何使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Demo"><span class="toc-number">1.1.4.</span> <span class="toc-text">Demo</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Prettier"><span class="toc-number">1.2.</span> <span class="toc-text">Prettier</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-Prettier"><span class="toc-number">1.2.1.</span> <span class="toc-text">什么是 Prettier</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-1"><span class="toc-number">1.2.2.</span> <span class="toc-text">如何使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Demo-1"><span class="toc-number">1.2.3.</span> <span class="toc-text">Demo</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Eslint"><span class="toc-number">1.3.</span> <span class="toc-text">Eslint</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-eslint"><span class="toc-number">1.3.1.</span> <span class="toc-text">什么是 eslint</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-2"><span class="toc-number">1.3.2.</span> <span class="toc-text">如何使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Demo-2"><span class="toc-number">1.3.3.</span> <span class="toc-text">Demo</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Stylelint"><span class="toc-number">1.4.</span> <span class="toc-text">Stylelint</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-stylelint"><span class="toc-number">1.4.1.</span> <span class="toc-text">什么是 stylelint</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-3"><span class="toc-number">1.4.2.</span> <span class="toc-text">如何使用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-hooks"><span class="toc-number">1.5.</span> <span class="toc-text">git hooks</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-git-hooks"><span class="toc-number">1.5.1.</span> <span class="toc-text">什么是 git hooks</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Demo-3"><span class="toc-number">1.5.2.</span> <span class="toc-text">Demo</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#commitlint"><span class="toc-number">1.6.</span> <span class="toc-text">commitlint</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-commitlint"><span class="toc-number">1.6.1.</span> <span class="toc-text">什么是 commitlint</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-4"><span class="toc-number">1.6.2.</span> <span class="toc-text">如何使用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%90%8E"><span class="toc-number">1.7.</span> <span class="toc-text">最后</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<p>如何写出整洁的代码</p>
+<span id="more"></span>
+
+<p><strong>If life is a joke, let us play it.</strong><br><strong>假如生活是一则玩笑，不妨游乐其中</strong></p>
+<h1 id="Clean-Code"><a href="#Clean-Code" class="headerlink" title="Clean Code"></a>Clean Code</h1><p>一个项目免不了多人合作，每个人用的开发工具，代码风格也各异，自己负责自己的模块还好，但是免不了多人写同一个模块，写的好的代码可以欣赏，写的差异太大，难免会骂街。那么有办法做到大家写的代码尽量统一呢，答案是肯定的，通过一系列工具，让一个项目看起来像是一个人写的。</p>
+<h2 id="editorconfig"><a href="#editorconfig" class="headerlink" title="editorconfig"></a>editorconfig</h2><p>解决开发工具的不同</p>
+<h3 id="常用开发工具"><a href="#常用开发工具" class="headerlink" title="常用开发工具"></a>常用开发工具</h3><ul>
+<li><a href="http://www.sublimetext.com/">sublimetext</a></li>
+<li><a href="https://code.visualstudio.com/">vs code</a></li>
+<li><a href="https://www.jetbrains.com/webstorm">webstorm</a></li>
+<li><a href="https://www.jetbrains.com/idea">idea</a></li>
+</ul>
+<h3 id="什么是-EditorConfig？"><a href="#什么是-EditorConfig？" class="headerlink" title="什么是 EditorConfig？"></a>什么是 EditorConfig？</h3><p>EditorConfig 有助于维护跨多个编辑器和 IDE 从事同一项目的多个开发人员的一致编码风格。EditorConfig 项目包括一个用于定义编码样式的文件格式和一个文本编辑器插件集合，这些文本编辑器插件使编辑器可以读取文件格式并遵循定义的样式。EditorConfig 文件易于阅读，并且可以与版本控制系统很好地协同工作。</p>
+<h3 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h3><p>创建.editorconfig 文件</p>
+<p>我使用的是 vs code 需安装插件 EditorConfig for VS Code</p>
+<blockquote>
+<p>属性配置</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>作用</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>indent_style</code></td>
+<td>缩进方式</td>
+<td>设置为<code>tab</code>或<code>space</code>分别使用硬标签或软标签。该值不区分大小写。</td>
+</tr>
+<tr>
+<td><code>indent_size</code></td>
+<td>缩进大小</td>
+<td>设置为整数，该整数定义用于每个缩进级别的列数和软标签的宽度（如果支持）。如果等于<code>tab</code>，<code>indent_size</code>则应将其设置为制表符大小，该大小应为<code>tab_width</code>（如果指定）；否则，标签大小由编辑器设置。该值不区分大小写。</td>
+</tr>
+<tr>
+<td><code>tab_width</code></td>
+<td>tab 宽度</td>
+<td>设置为整数，定义用于表示制表符的列数。该默认值为，<code>indent_size</code>通常不需要指定。</td>
+</tr>
+<tr>
+<td><code>end_of_line</code></td>
+<td>换行方式</td>
+<td>设置为<code>lf</code>，<code>cr</code>或<code>crlf</code>控制表示换行的方式。该值不区分大小写。</td>
+</tr>
+<tr>
+<td><code>charset</code></td>
+<td>编码</td>
+<td>设置为<code>latin1</code>，<code>utf-8</code>，<code>utf-8-bom</code>，<code>utf-16be</code>或<code>utf-16le</code>控制字符集。<code>utf-8-bom</code>不鼓励使用。</td>
+</tr>
+<tr>
+<td><code>trim_trailing_whitespace</code></td>
+<td>是否删除每行最后多的空白符号</td>
+<td>设置为<code>true</code>删除文件中所有在换行符之前的空白字符，并<code>false</code>确保没有。</td>
+</tr>
+<tr>
+<td><code>insert_final_newline</code></td>
+<td>是否以换行为结束</td>
+<td>设置以<code>true</code>确保文件在保存时以换行符结尾，并<code>false</code> 确保没有。</td>
+</tr>
+<tr>
+<td><code>root</code></td>
+<td></td>
+<td>必须在序言中指定。设置为<code>true</code>停止<code>.editorconfig</code>对当前文件的 文件搜索。该值不区分大小写。</td>
+</tr>
+</tbody></table>
+<h3 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"># http://editorconfig.org</span><br><span class="line">root = true</span><br><span class="line"></span><br><span class="line">[*]</span><br><span class="line">charset = utf-8</span><br><span class="line">end_of_line = lf</span><br><span class="line">indent_size = 2</span><br><span class="line">indent_style = space</span><br><span class="line">insert_final_newline = true</span><br><span class="line">max_line_length = 100</span><br><span class="line">trim_trailing_whitespace = true</span><br><span class="line"></span><br><span class="line">[*.md]</span><br><span class="line">max_line_length = 0</span><br><span class="line">trim_trailing_whitespace = false</span><br><span class="line"></span><br><span class="line">[COMMIT_EDITMSG]</span><br><span class="line">max_line_length = 0</span><br></pre></td></tr></table></figure>
+
+<h2 id="Prettier"><a href="#Prettier" class="headerlink" title="Prettier"></a>Prettier</h2><p>代码要漂亮</p>
+<h3 id="什么是-Prettier"><a href="#什么是-Prettier" class="headerlink" title="什么是 Prettier"></a>什么是 <a href="https://prettier.io/">Prettier</a></h3><p>写的代码不仅要功能强大，也必须漂亮，只要你保存，无论你的代码格式有多散乱，立马整整齐齐，赏心悦目。</p>
+<p>vscode 的插件是 prettier-vscode</p>
+<h3 id="如何使用-1"><a href="#如何使用-1" class="headerlink" title="如何使用"></a>如何使用</h3><p>创建.editorconfig 文件</p>
+<p>我使用的是 vs code 需安装插件 EditorConfig for VS Code</p>
+<p><a href="https://prettier.io/docs/en/options.html">属性配置</a></p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>作用</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>printWidth</code></td>
+<td>每行长度</td>
+<td>string 一般为 80 100</td>
+</tr>
+<tr>
+<td><code>tabWidth</code></td>
+<td>tab 宽度</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>singleQuote</code></td>
+<td>单引号还是双引号</td>
+<td>boolean</td>
+</tr>
+<tr>
+<td><code>arrowParens</code></td>
+<td>箭头函数是否需要括号</td>
+<td>always avoid</td>
+</tr>
+</tbody></table>
+<h3 id="Demo-1"><a href="#Demo-1" class="headerlink" title="Demo"></a>Demo</h3><p>.prettierrc</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;printWidth&quot;: 100,</span><br><span class="line">  &quot;tabWidth&quot;: 2,</span><br><span class="line">  &quot;singleQuote&quot;: false,</span><br><span class="line">  &quot;arrowParens&quot;: &quot;always&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Eslint"><a href="#Eslint" class="headerlink" title="Eslint"></a>Eslint</h2><h3 id="什么是-eslint"><a href="#什么是-eslint" class="headerlink" title="什么是 eslint"></a>什么是 eslint</h3><p><a href="https://eslint.org/">eslint</a> 是帮助你找到 javascript 代码中的错误并修复。</p>
+<h3 id="如何使用-2"><a href="#如何使用-2" class="headerlink" title="如何使用"></a>如何使用</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i eslint -D</span><br></pre></td></tr></table></figure>
+
+<p>配置 eslintrc,有不想校验的可在.eslintignore 中配置</p>
+<h3 id="Demo-2"><a href="#Demo-2" class="headerlink" title="Demo"></a>Demo</h3><p>.eslintrc</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;parser&quot;: &quot;babel-eslint&quot;,</span><br><span class="line">  &quot;plugins&quot;: [&quot;eslint-plugin-react&quot;, &quot;react-hooks&quot;],</span><br><span class="line">  &quot;extends&quot;: [&quot;eslint:recommended&quot;, &quot;plugin:react/recommended&quot;],</span><br><span class="line">  &quot;settings&quot;: &#123;</span><br><span class="line">    &quot;react&quot;: &#123;</span><br><span class="line">      &quot;version&quot;: &quot;detect&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;rules&quot;: &#123;</span><br><span class="line">    &quot;semi&quot;: 2,</span><br><span class="line">    &quot;react/prop-types&quot;: 0,</span><br><span class="line">    &quot;no-console&quot;: &quot;off&quot;,</span><br><span class="line">    &quot;no-undef&quot;: &quot;off&quot;,</span><br><span class="line">    &quot;react-hooks/rules-of-hooks&quot;: &quot;error&quot;,</span><br><span class="line">    &quot;react-hooks/exhaustive-deps&quot;: &quot;error&quot;,</span><br><span class="line">    &quot;react/jsx-handler-names&quot;: [</span><br><span class="line">      1,</span><br><span class="line">      &#123;</span><br><span class="line">        &quot;eventHandlerPrefix&quot;: &quot;fn&quot;,</span><br><span class="line">        &quot;eventHandlerPropPrefix&quot;: &quot;on&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    ],</span><br><span class="line">    &quot;react/jsx-no-bind&quot;: [</span><br><span class="line">      1,</span><br><span class="line">      &#123;</span><br><span class="line">        &quot;ignoreDOMComponents&quot;: false,</span><br><span class="line">        &quot;ignoreRefs&quot;: true,</span><br><span class="line">        &quot;allowArrowFunctions&quot;: true,</span><br><span class="line">        &quot;allowFunctions&quot;: false,</span><br><span class="line">        &quot;allowBind&quot;: false</span><br><span class="line">      &#125;</span><br><span class="line">    ],</span><br><span class="line">    &quot;react/sort-comp&quot;: [</span><br><span class="line">      &quot;error&quot;,</span><br><span class="line">      &#123;</span><br><span class="line">        &quot;order&quot;: [&quot;static-methods&quot;, &quot;lifecycle&quot;, &quot;/^on.+$/&quot;, &quot;everything-else&quot;, &quot;render&quot;],</span><br><span class="line">        &quot;groups&quot;: &#123;</span><br><span class="line">          &quot;lifecycle&quot;: [</span><br><span class="line">            &quot;displayName&quot;,</span><br><span class="line">            &quot;propTypes&quot;,</span><br><span class="line">            &quot;contextTypes&quot;,</span><br><span class="line">            &quot;childContextTypes&quot;,</span><br><span class="line">            &quot;mixins&quot;,</span><br><span class="line">            &quot;statics&quot;,</span><br><span class="line">            &quot;defaultProps&quot;,</span><br><span class="line">            &quot;constructor&quot;,</span><br><span class="line">            &quot;getDefaultProps&quot;,</span><br><span class="line">            &quot;state&quot;,</span><br><span class="line">            &quot;getInitialState&quot;,</span><br><span class="line">            &quot;getChildContext&quot;,</span><br><span class="line">            &quot;getDerivedStateFromProps&quot;,</span><br><span class="line">            &quot;componentWillMount&quot;,</span><br><span class="line">            &quot;UNSAFE_componentWillMount&quot;,</span><br><span class="line">            &quot;componentDidMount&quot;,</span><br><span class="line">            &quot;componentWillReceiveProps&quot;,</span><br><span class="line">            &quot;UNSAFE_componentWillReceiveProps&quot;,</span><br><span class="line">            &quot;shouldComponentUpdate&quot;,</span><br><span class="line">            &quot;componentWillUpdate&quot;,</span><br><span class="line">            &quot;UNSAFE_componentWillUpdate&quot;,</span><br><span class="line">            &quot;getSnapshotBeforeUpdate&quot;,</span><br><span class="line">            &quot;componentDidUpdate&quot;,</span><br><span class="line">            &quot;componentDidCatch&quot;,</span><br><span class="line">            &quot;componentWillUnmount&quot;</span><br><span class="line">          ]</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>.eslintignore</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># Third party</span><br><span class="line">**/node_modules</span><br></pre></td></tr></table></figure>
+
+<h2 id="Stylelint"><a href="#Stylelint" class="headerlink" title="Stylelint"></a>Stylelint</h2><h3 id="什么是-stylelint"><a href="#什么是-stylelint" class="headerlink" title="什么是 stylelint"></a>什么是 stylelint</h3><p><a href="https://stylelint.io/">stylelint</a> 是强大的 css 代码审查工具，可帮助避免错误并在样式中强制执行约定。</p>
+<h3 id="如何使用-3"><a href="#如何使用-3" class="headerlink" title="如何使用"></a>如何使用</h3><p>项目中可使用 stylelint stylelint-config-standard 这两个插件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i stylelint stylelint-config-standard -D</span><br></pre></td></tr></table></figure>
+
+<p>创建.styleintrc.json 文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;extends&quot;: &quot;stylelint-config-standard&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="git-hooks"><a href="#git-hooks" class="headerlink" title="git hooks"></a>git hooks</h2><h3 id="什么是-git-hooks"><a href="#什么是-git-hooks" class="headerlink" title="什么是 git hooks"></a>什么是 git hooks</h3><p><a href="https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks">hooks</a>是一些在<code>.git/hooks</code>目录的脚本,安装一些插件可在 git 的特定事件触发调用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i husky lint-stage -D</span><br></pre></td></tr></table></figure>
+
+<h3 id="Demo-3"><a href="#Demo-3" class="headerlink" title="Demo"></a>Demo</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&quot;lint-staged&quot;: &quot;lint-staged&quot;,</span><br><span class="line">   &quot;lint:css&quot;: &quot;stylelint --fix &#x27;src/**/*.scss&#x27;&quot;,</span><br><span class="line">   &quot;lint:js&quot;: &quot;eslint --fix src&quot;,</span><br><span class="line">   &quot;prettier&quot;: &quot;prettier --write  \&quot;./**/*.&#123;js,jsx,css,scss,md,json&#125;\&quot;&quot;,</span><br><span class="line">   &quot;test&quot;: &quot;npm run lint&quot;</span><br><span class="line"> &#125;,</span><br><span class="line"> &quot;husky&quot;: &#123;</span><br><span class="line">   &quot;hooks&quot;: &#123;</span><br><span class="line">     &quot;pre-commit&quot;: &quot;lint-staged&quot;,</span><br><span class="line">     &quot;commit-msg&quot;: &quot;commitlint -e $HUSKY_GIT_PARAMS&quot;</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;,</span><br><span class="line"> &quot;lint-staged&quot;: &#123;</span><br><span class="line">   &quot;src/**/*&#123;js,jsx&#125;&quot;: [</span><br><span class="line">     &quot;prettier --write  \&quot;./**/*.&#123;js,jsx,css,scss,md,json&#125;\&quot;&quot;,</span><br><span class="line">     &quot;eslint --fix&quot;,</span><br><span class="line">     &quot;git add&quot;</span><br><span class="line">   ]</span><br><span class="line"> &#125;,</span><br></pre></td></tr></table></figure>
+
+<h2 id="commitlint"><a href="#commitlint" class="headerlink" title="commitlint"></a>commitlint</h2><h3 id="什么是-commitlint"><a href="#什么是-commitlint" class="headerlink" title="什么是 commitlint"></a>什么是 commitlint</h3><p>git 提交信息校验，校验避免无意义的提交信息。</p>
+<h3 id="如何使用-4"><a href="#如何使用-4" class="headerlink" title="如何使用"></a>如何使用</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev @commitlint/config-conventional @commitlint/cli</span><br><span class="line"></span><br><span class="line">echo &quot;module.exports = &#123;extends: [&#x27;@commitlint/config-conventional&#x27;]&#125;;&quot; &gt; commitlint.config.js</span><br><span class="line">&quot;husky&quot;: &#123;</span><br><span class="line">    &quot;hooks&quot;: &#123;</span><br><span class="line">      &quot;pre-commit&quot;: &quot;npm run test&quot;,</span><br><span class="line">      &quot;commit-msg&quot;: &quot;commitlint -e $HUSKY_GIT_PARAMS&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&quot;precommit&quot;: &quot;lint-staged&quot;</span><br><span class="line">&#125;,</span><br><span class="line">&quot;lint-staged&quot;: &#123;</span><br><span class="line">  &quot;src/**/*&quot;: [</span><br><span class="line">    &quot;prettier --write  \&quot;./**/*.&#123;js,jsx,css,less,md,json&#125;\&quot;&quot;,</span><br><span class="line">    &quot;eslint --fix&quot;,</span><br><span class="line">    &quot;git add&quot;</span><br><span class="line">  ]</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><a href="https://github.com/conventional-changelog/commitlint">commitlint</a></li>
+<li><a href="https://github.com/conventional-changelog/commitlint/tree/master/@commitlint/config-conventional">@commitlint&#x2F;config-conventional</a></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  &#x27;build&#x27;,</span><br><span class="line">  &#x27;ci&#x27;,</span><br><span class="line">  &#x27;chore&#x27;,</span><br><span class="line">  &#x27;docs&#x27;,</span><br><span class="line">  &#x27;feat&#x27;,</span><br><span class="line">  &#x27;fix&#x27;,</span><br><span class="line">  &#x27;perf&#x27;,</span><br><span class="line">  &#x27;refactor&#x27;,</span><br><span class="line">  &#x27;revert&#x27;,</span><br><span class="line">  &#x27;style&#x27;,</span><br><span class="line">  &#x27;test&#x27;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;foo: some message&quot; # 失败</span><br><span class="line">echo &quot;fix: some message&quot; # 通过</span><br></pre></td></tr></table></figure>
+
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>说了一堆废话，直接看项目吧<a href="https://github.com/FFET/react-mobile-kit">react-mobile-kit</a></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/blog/tags/JS/">JS</a><a href="/blog/tags/开发规范/">开发规范</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://scorpionjay.github.io/blog/2020/04/03/clean-code/" data-title="clean-code | Jay" data-tsina="" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/blog/2020/05/26/抓包-模拟-调度/" title="抓包+模拟+调度">
+  <strong>上一篇：</strong><br/>
+  <span>
+  抓包+模拟+调度</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/blog/2019/12/25/new-server/"  title="new server">
+ <strong>下一篇：</strong><br/> 
+ <span>new server
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+</div>  
+
+
+
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Clean-Code"><span class="toc-number">1.</span> <span class="toc-text">Clean Code</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#editorconfig"><span class="toc-number">1.1.</span> <span class="toc-text">editorconfig</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7"><span class="toc-number">1.1.1.</span> <span class="toc-text">常用开发工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-EditorConfig%EF%BC%9F"><span class="toc-number">1.1.2.</span> <span class="toc-text">什么是 EditorConfig？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8"><span class="toc-number">1.1.3.</span> <span class="toc-text">如何使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Demo"><span class="toc-number">1.1.4.</span> <span class="toc-text">Demo</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Prettier"><span class="toc-number">1.2.</span> <span class="toc-text">Prettier</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-Prettier"><span class="toc-number">1.2.1.</span> <span class="toc-text">什么是 Prettier</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-1"><span class="toc-number">1.2.2.</span> <span class="toc-text">如何使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Demo-1"><span class="toc-number">1.2.3.</span> <span class="toc-text">Demo</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Eslint"><span class="toc-number">1.3.</span> <span class="toc-text">Eslint</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-eslint"><span class="toc-number">1.3.1.</span> <span class="toc-text">什么是 eslint</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-2"><span class="toc-number">1.3.2.</span> <span class="toc-text">如何使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Demo-2"><span class="toc-number">1.3.3.</span> <span class="toc-text">Demo</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Stylelint"><span class="toc-number">1.4.</span> <span class="toc-text">Stylelint</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-stylelint"><span class="toc-number">1.4.1.</span> <span class="toc-text">什么是 stylelint</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-3"><span class="toc-number">1.4.2.</span> <span class="toc-text">如何使用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-hooks"><span class="toc-number">1.5.</span> <span class="toc-text">git hooks</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-git-hooks"><span class="toc-number">1.5.1.</span> <span class="toc-text">什么是 git hooks</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Demo-3"><span class="toc-number">1.5.2.</span> <span class="toc-text">Demo</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#commitlint"><span class="toc-number">1.6.</span> <span class="toc-text">commitlint</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-commitlint"><span class="toc-number">1.6.1.</span> <span class="toc-text">什么是 commitlint</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-4"><span class="toc-number">1.6.2.</span> <span class="toc-text">如何使用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%90%8E"><span class="toc-number">1.7.</span> <span class="toc-text">最后</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/blog/tags/js/" title="js">js<sup>31</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/java/" title="java">java<sup>15</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/html/" title="html">html<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/react/" title="react">react<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/spring/" title="spring">spring<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/linux/" title="linux">linux<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/工具/" title="工具">工具<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/mongodb/" title="mongodb">mongodb<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/react-native/" title="react native">react native<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/css/" title="css">css<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/docker/" title="docker">docker<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/node/" title="node">node<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/微信/" title="微信">微信<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/spring-mvc/" title="spring mvc">spring mvc<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/hibernate/" title="hibernate">hibernate<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/angularjs/" title="angularjs">angularjs<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/bootstrap/" title="bootstrap">bootstrap<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/git/" title="git">git<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/励志/" title="励志">励志<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/web/" title="web">web<sup>2</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.oschina.net/" target="_blank" title="开源中国">开源中国</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.cnblogs.com/" target="_blank" title="博客园">博客园</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.allitebooks.com/" target="_blank" title="IT eBooks">IT eBooks</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://jsfiddle.net" target="_blank" title="jsfiddle">jsfiddle</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://s9013.gitbooks.io/book/content/" target="_blank" title="gitbook">gitbook</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+  <div class="tagcloudlist">
+    <p class="asidetitle">标签云</p>
+    <div class="tagcloudlist clearfix">
+       <a href="/blog/tags/CI-CD/" style="font-size: 10px;">CI CD</a> <a href="/blog/tags/JS/" style="font-size: 10px;">JS</a> <a href="/blog/tags/android/" style="font-size: 10px;">android</a> <a href="/blog/tags/angularjs/" style="font-size: 11.25px;">angularjs</a> <a href="/blog/tags/bootstrap/" style="font-size: 11.25px;">bootstrap</a> <a href="/blog/tags/centos/" style="font-size: 10px;">centos</a> <a href="/blog/tags/cordova/" style="font-size: 10px;">cordova</a> <a href="/blog/tags/css/" style="font-size: 13.75px;">css</a> <a href="/blog/tags/docker/" style="font-size: 12.5px;">docker</a> <a href="/blog/tags/flutter/" style="font-size: 10px;">flutter</a> <a href="/blog/tags/front-end/" style="font-size: 10px;">front-end</a> <a href="/blog/tags/git/" style="font-size: 11.25px;">git</a> <a href="/blog/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/blog/tags/hibernate/" style="font-size: 11.25px;">hibernate</a> <a href="/blog/tags/html/" style="font-size: 17.5px;">html</a> <a href="/blog/tags/ide/" style="font-size: 10px;">ide</a> <a href="/blog/tags/ionic/" style="font-size: 10px;">ionic</a> <a href="/blog/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/blog/tags/java/" style="font-size: 18.75px;">java</a> <a href="/blog/tags/jpa/" style="font-size: 10px;">jpa</a> <a href="/blog/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/blog/tags/js/" style="font-size: 20px;">js</a> <a href="/blog/tags/linux/" style="font-size: 16.25px;">linux</a> <a href="/blog/tags/mongodb/" style="font-size: 15px;">mongodb</a> <a href="/blog/tags/mybatis/" style="font-size: 10px;">mybatis</a> <a href="/blog/tags/node/" style="font-size: 12.5px;">node</a> <a href="/blog/tags/npm/" style="font-size: 10px;">npm</a> <a href="/blog/tags/python/" style="font-size: 11.25px;">python</a> <a href="/blog/tags/react/" style="font-size: 17.5px;">react</a> <a href="/blog/tags/react-native/" style="font-size: 15px;">react native</a> <a href="/blog/tags/react-%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">react 工具</a> <a href="/blog/tags/sdk/" style="font-size: 10px;">sdk</a> <a href="/blog/tags/spring/" style="font-size: 17.5px;">spring</a> <a href="/blog/tags/spring-mvc/" style="font-size: 12.5px;">spring mvc</a> <a href="/blog/tags/sql/" style="font-size: 10px;">sql</a> <a href="/blog/tags/ssh/" style="font-size: 10px;">ssh</a> <a href="/blog/tags/web/" style="font-size: 11.25px;">web</a> <a href="/blog/tags/webpack/" style="font-size: 10px;">webpack</a> <a href="/blog/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 10px;">人工智能</a> <a href="/blog/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/blog/tags/%E5%8A%B1%E5%BF%97/" style="font-size: 11.25px;">励志</a> <a href="/blog/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 15px;">工具</a> <a href="/blog/tags/%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/" style="font-size: 10px;">开发规范</a> <a href="/blog/tags/%E5%BE%AE%E4%BF%A1/" style="font-size: 12.5px;">微信</a> <a href="/blog/tags/%E6%89%AF%E6%B7%A1/" style="font-size: 10px;">扯淡</a> <a href="/blog/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 10px;">架构</a> <a href="/blog/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/" style="font-size: 10px;">树莓派</a> <a href="/blog/tags/%E7%9B%91%E6%8E%A7/" style="font-size: 10px;">监控</a>
+    </div>
+  </div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Jay. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+
+			
+		
+
+		
+</div>
+</footer>
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js"></script>
+<script src="/blog/js/gallery.js"></script>
+<script src="/blog/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.navbar').click(function(){
+      $('header nav').toggleClass('shownav');
+    });
+    var myWidth = 0;
+    function getSize(){
+      if( typeof( window.innerWidth ) == 'number' ) {
+        myWidth = window.innerWidth;
+      } else if( document.documentElement && document.documentElement.clientWidth) {
+        myWidth = document.documentElement.clientWidth;
+      };
+    };
+    var m = $('#main'),
+        a = $('#asidepart'),
+        c = $('.closeaside'),
+        o = $('.openaside');
+    c.click(function(){
+      a.addClass('fadeOut').css('display', 'none');
+      o.css('display', 'block').addClass('fadeIn');
+      m.addClass('moveMain');
+    });
+    o.click(function(){
+      o.css('display', 'none').removeClass('beforeFadeIn');
+      a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');
+      m.removeClass('moveMain');
+    });
+    $(window).scroll(function(){
+      o.css("top",Math.max(80,260-$(this).scrollTop()));
+    });
+    
+          getSize();
+          if (myWidth >= 1024) {
+            c.click();
+          }
+    
+    $(window).resize(function(){
+      getSize();
+      if (myWidth >= 1024) {
+        $('header nav').removeClass('shownav');
+      }else{
+        m.removeClass('moveMain');
+        a.css('display', 'block').removeClass('fadeOut');
+        o.css('display', 'none');
+        
+        $('#toc.toc-aside').css('display', 'none');
+        
+      }
+    });
+  });
+</script>
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    var ai = $(".article-content>iframe"),
+      ae = $(".article-content>embed"),
+      t = $("#toc"),
+      ta = $("#toc.toc-aside"),
+      o = $(".openaside"),
+      c = $(".closeaside");
+    if (ai.length > 0) {
+      ai.wrap('<div class="video-container" />');
+    }
+    if (ae.length > 0) {
+      ae.wrap('<div class="video-container" />');
+    }
+    c.click(function () {
+      ta.css("display", "block").addClass("fadeIn");
+    });
+    o.click(function () {
+      ta.css("display", "none");
+    });
+    $(window).scroll(function () {
+      ta.css("top", Math.max(140, 320 - $(this).scrollTop()));
+    });
+  });
+</script>
+    
+<link
+  rel="stylesheet"
+  href="/blog/fancybox/jquery.fancybox.css"
+  media="screen"
+  type="text/css"
+/>
+<script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+  $(document).ready(function () {
+    $(".article-content").each(function (i) {
+      $(this)
+        .find("img")
+        .each(function () {
+          if ($(this).parent().hasClass("fancybox")) return;
+          var alt = this.alt;
+          if (alt) $(this).after('<span class="caption">' + alt + "</span>");
+          $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+        });
+      $(this)
+        .find(".fancybox")
+        .each(function () {
+          $(this).attr("rel", "article" + i);
+        });
+    });
+    if ($.fancybox) {
+      $(".fancybox").fancybox();
+    }
+  });
+</script>
+
+
+<!-- Analytics Begin -->
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?aafa6fbc5fea21c51d792808bdaa3e44";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/blog/img/scrollup.png"/></a>
+	</div>
+	<script src="/blog/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+  </body>
+</html>
+
+
+
+<!--fork me on github-->
+<a id="forkme" href="https://github.com/ScorpionJay" target="_blank"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_darkblue_121621.png?resize=149%2C149" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>

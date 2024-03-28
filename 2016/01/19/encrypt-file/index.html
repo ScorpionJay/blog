@@ -1,0 +1,496 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="baidu-site-verification" content="X5tqKoHyW3" />
+  
+    <title>encrypt file | Jay</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Jay">
+    
+
+    
+    <meta name="description" content="encrypt file">
+<meta property="og:type" content="article">
+<meta property="og:title" content="encrypt file">
+<meta property="og:url" content="https://scorpionjay.github.io/blog/2016/01/19/encrypt-file/index.html">
+<meta property="og:site_name" content="Jay">
+<meta property="og:description" content="encrypt file">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-01-19T07:22:51.000Z">
+<meta property="article:modified_time" content="2024-03-28T09:35:24.683Z">
+<meta property="article:author" content="Jay">
+<meta property="article:tag" content="java">
+<meta name="twitter:card" content="summary">
+
+    
+    
+    <link rel="icon" href="/blog/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/blog/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/blog/img/jacman.jpg">
+    
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/blog/" title="Jay">Jay</a></h1>
+				<h2 class="blog-motto">Life is simple.You make choices and you don&#39;t look back.</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/blog/">主页</a></li>
+					
+						<li><a href="/blog/archives">归档</a></li>
+					
+						<li><a href="/blog/project">项目</a></li>
+					
+						<li><a href="/blog/about">关于</a></li>
+					
+					<li>
+						<form class="search">
+							<label>Search</label>
+							<input type="text" class="st-default-search-input" autocomplete="off" maxlength="20" placeholder="搜索" />
+						</form>
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+
+
+
+
+
+
+
+    <div id="container">
+
+
+
+
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/blog/2016/01/19/encrypt-file/" title="encrypt file" itemprop="url">encrypt file</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/blog/about" title="Jay" target="_blank" itemprop="author">Jay</a>
+		
+  <p class="article-time">
+    <time datetime="2016-01-19T07:22:51.000Z" itemprop="datePublished"> 发表于 2016-01-19</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			
+		
+		</div>
+		
+		<p>encrypt file </p>
+<span id="more"></span>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.FileInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.FileOutputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.OutputStream;</span><br><span class="line"><span class="keyword">import</span> java.security.Key;</span><br><span class="line"><span class="keyword">import</span> java.security.MessageDigest;</span><br><span class="line"><span class="keyword">import</span> java.security.NoSuchAlgorithmException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.crypto.Cipher;</span><br><span class="line"><span class="keyword">import</span> javax.crypto.SecretKeyFactory;</span><br><span class="line"><span class="keyword">import</span> javax.crypto.spec.DESedeKeySpec;</span><br><span class="line"><span class="keyword">import</span> javax.crypto.spec.IvParameterSpec;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.commons.codec.binary.Base64;</span><br><span class="line"><span class="keyword">import</span> org.apache.commons.codec.binary.Hex;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Jay</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span>   Jan 18, 2016</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Encrypt</span> &#123;</span><br><span class="line"></span><br><span class="line">	 <span class="keyword">private</span> <span class="keyword">static</span> <span class="type">byte</span> keyiv[] = <span class="string">&quot;12345678&quot;</span>.getBytes();</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * generate key</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> str	</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">generateKeyByMd5</span><span class="params">(String str)</span> &#123;</span><br><span class="line">		<span class="type">String</span> <span class="variable">result</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			<span class="type">MessageDigest</span> <span class="variable">messageDigest</span> <span class="operator">=</span> MessageDigest.getInstance(<span class="string">&quot;md5&quot;</span>);</span><br><span class="line">			<span class="type">byte</span>[] md5Bytes = messageDigest.digest(str.getBytes());</span><br><span class="line">			result = Hex.encodeHexString(md5Bytes);</span><br><span class="line">		&#125; <span class="keyword">catch</span> (NoSuchAlgorithmException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> result;</span><br><span class="line">	&#125;</span><br><span class="line">	 </span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 3des encrypt</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> str</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> key</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">encrypt3Des</span><span class="params">(String str, String key)</span> &#123;</span><br><span class="line">		<span class="type">String</span> <span class="variable">returnStr</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			<span class="comment">// key转换</span></span><br><span class="line">			<span class="type">DESedeKeySpec</span> <span class="variable">deSedeKeySpec</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DESedeKeySpec</span>(key.getBytes());</span><br><span class="line">			<span class="type">SecretKeyFactory</span> <span class="variable">factory</span> <span class="operator">=</span> SecretKeyFactory.getInstance(<span class="string">&quot;DESede&quot;</span>);</span><br><span class="line">			<span class="type">Key</span> <span class="variable">convertSecretKey</span> <span class="operator">=</span> factory.generateSecret(deSedeKeySpec);</span><br><span class="line">			<span class="comment">// 加密</span></span><br><span class="line">			<span class="type">Cipher</span> <span class="variable">cipher</span> <span class="operator">=</span> Cipher.getInstance(<span class="string">&quot;DESede/CBC/PKCS5Padding&quot;</span>);</span><br><span class="line">			<span class="type">IvParameterSpec</span> <span class="variable">ips</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">IvParameterSpec</span>(keyiv);</span><br><span class="line">			cipher.init(Cipher.ENCRYPT_MODE, convertSecretKey,ips);</span><br><span class="line">			<span class="type">byte</span>[] result = cipher.doFinal(str.getBytes());</span><br><span class="line">			returnStr = Base64.encodeBase64String(result);</span><br><span class="line">		&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> returnStr;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * decrypt</span></span><br><span class="line"><span class="comment">	 * </span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> str 待解密字符串</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> key 密钥</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">decrypt</span><span class="params">(String str, String key)</span> &#123;</span><br><span class="line">		<span class="type">String</span> <span class="variable">returnStr</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			<span class="comment">// key转换</span></span><br><span class="line">			<span class="type">DESedeKeySpec</span> <span class="variable">deSedeKeySpec</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DESedeKeySpec</span>(key.getBytes());</span><br><span class="line">			<span class="type">SecretKeyFactory</span> <span class="variable">factory</span> <span class="operator">=</span> SecretKeyFactory.getInstance(<span class="string">&quot;DESede&quot;</span>);</span><br><span class="line">			<span class="type">Key</span> <span class="variable">convertSecretKey</span> <span class="operator">=</span> factory.generateSecret(deSedeKeySpec);</span><br><span class="line">			<span class="type">Cipher</span> <span class="variable">cipher</span> <span class="operator">=</span> Cipher.getInstance(<span class="string">&quot;DESede/CBC/PKCS5Padding&quot;</span>);</span><br><span class="line">			<span class="type">IvParameterSpec</span> <span class="variable">ips</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">IvParameterSpec</span>(keyiv);</span><br><span class="line">			cipher.init(Cipher.DECRYPT_MODE, convertSecretKey,ips);</span><br><span class="line">			<span class="type">byte</span>[] result = cipher.doFinal(Base64.decodeBase64(str.getBytes()));</span><br><span class="line">			<span class="comment">// System.out.println(Base64.encodeBase64(result));</span></span><br><span class="line">			System.out.println(<span class="string">&quot;decrypt : &quot;</span> + <span class="keyword">new</span> <span class="title class_">String</span>(result));</span><br><span class="line">			returnStr = <span class="keyword">new</span> <span class="title class_">String</span>(result, <span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line">		&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> returnStr;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * read file</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> path</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@throws</span> Exception</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">readFile</span><span class="params">(String path)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">		<span class="type">File</span> <span class="variable">f</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(path);</span><br><span class="line">		<span class="type">InputStream</span> <span class="variable">in</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(f);</span><br><span class="line">		<span class="type">byte</span>[] b = <span class="keyword">new</span> <span class="title class_">byte</span>[(<span class="type">int</span>) f.length()];</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; b.length; i++) &#123;</span><br><span class="line">			b[i] = (<span class="type">byte</span>) in.read();</span><br><span class="line">		&#125;</span><br><span class="line">		in.close();</span><br><span class="line">		System.out.println(<span class="keyword">new</span> <span class="title class_">String</span>(b));</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">String</span>(b);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * write file</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> str</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> path</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">writeFile</span><span class="params">(String str,String path)</span>&#123;</span><br><span class="line">		 File f=<span class="keyword">new</span> <span class="title class_">File</span>(path);</span><br><span class="line">	        <span class="keyword">try</span>&#123;</span><br><span class="line">	            f.createNewFile();</span><br><span class="line">	            <span class="type">OutputStream</span> <span class="variable">out</span> <span class="operator">=</span><span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(f);</span><br><span class="line">	            <span class="type">byte</span>[] b=str.getBytes();</span><br><span class="line">	            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; b.length; i++) &#123;</span><br><span class="line">	                out.write(b[i]);</span><br><span class="line">	            &#125;</span><br><span class="line">	            out.close();</span><br><span class="line">	            </span><br><span class="line">	        &#125;<span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">	            e.printStackTrace();</span><br><span class="line">	        &#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		<span class="type">String</span> <span class="variable">keyStr</span> <span class="operator">=</span> <span class="string">&quot;hello world&quot;</span>;</span><br><span class="line">		<span class="type">String</span> <span class="variable">key</span> <span class="operator">=</span> generateKeyByMd5(keyStr);</span><br><span class="line">		System.out.println(<span class="string">&quot;key ：&quot;</span> + key);</span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//		System.out.println(&quot;加密后内容：&quot; + encrypt3Des(&quot;hello&quot;, key));</span></span><br><span class="line"><span class="comment">//		System.out.println(&quot;解密后内容:&quot; + decrypt(&quot;6ca8bd1aba93714e&quot;, key));</span></span><br><span class="line"><span class="comment">//		System.out.println(&quot;------------&quot;);</span></span><br><span class="line"><span class="comment">//		System.out.println(decrypt(encrypt3Des(</span></span><br><span class="line"><span class="comment">//				&quot;hellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrdhellowolrd&quot;,</span></span><br><span class="line"><span class="comment">//				key), key));</span></span><br><span class="line">	</span><br><span class="line">		<span class="comment">// 加密</span></span><br><span class="line">		</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			<span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> readFile(<span class="string">&quot;/home/jay/test&quot;</span>);</span><br><span class="line">			str = encrypt3Des(str, key);</span><br><span class="line">			System.out.println(<span class="string">&quot;加密后内容：&quot;</span> + str);</span><br><span class="line">			writeFile(str,<span class="string">&quot;/home/jay/output&quot;</span>);</span><br><span class="line">		&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">// 解密</span></span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			<span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> readFile(<span class="string">&quot;/home/jay/output&quot;</span>);</span><br><span class="line">			str = decrypt(str, key);</span><br><span class="line">			System.out.println(<span class="string">&quot;解密后内容：&quot;</span> + str);</span><br><span class="line">			writeFile(str,<span class="string">&quot;/home/jay/output2&quot;</span>);</span><br><span class="line">		&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/blog/tags/java/">java</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://scorpionjay.github.io/blog/2016/01/19/encrypt-file/" data-title="encrypt file | Jay" data-tsina="" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/blog/2016/03/23/hexo/" title="hexo blog">
+  <strong>上一篇：</strong><br/>
+  <span>
+  hexo blog</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/blog/2015/12/09/jquery-qrcode/"  title="jquery-qrcode">
+ <strong>下一篇：</strong><br/> 
+ <span>jquery-qrcode
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+</div>  
+
+
+
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ 
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/blog/tags/js/" title="js">js<sup>31</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/java/" title="java">java<sup>15</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/html/" title="html">html<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/react/" title="react">react<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/spring/" title="spring">spring<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/linux/" title="linux">linux<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/工具/" title="工具">工具<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/mongodb/" title="mongodb">mongodb<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/react-native/" title="react native">react native<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/css/" title="css">css<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/docker/" title="docker">docker<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/node/" title="node">node<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/微信/" title="微信">微信<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/spring-mvc/" title="spring mvc">spring mvc<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/hibernate/" title="hibernate">hibernate<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/angularjs/" title="angularjs">angularjs<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/bootstrap/" title="bootstrap">bootstrap<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/git/" title="git">git<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/励志/" title="励志">励志<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/blog/tags/web/" title="web">web<sup>2</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.oschina.net/" target="_blank" title="开源中国">开源中国</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.cnblogs.com/" target="_blank" title="博客园">博客园</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.allitebooks.com/" target="_blank" title="IT eBooks">IT eBooks</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://jsfiddle.net" target="_blank" title="jsfiddle">jsfiddle</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://s9013.gitbooks.io/book/content/" target="_blank" title="gitbook">gitbook</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+  <div class="tagcloudlist">
+    <p class="asidetitle">标签云</p>
+    <div class="tagcloudlist clearfix">
+       <a href="/blog/tags/CI-CD/" style="font-size: 10px;">CI CD</a> <a href="/blog/tags/JS/" style="font-size: 10px;">JS</a> <a href="/blog/tags/android/" style="font-size: 10px;">android</a> <a href="/blog/tags/angularjs/" style="font-size: 11.25px;">angularjs</a> <a href="/blog/tags/bootstrap/" style="font-size: 11.25px;">bootstrap</a> <a href="/blog/tags/centos/" style="font-size: 10px;">centos</a> <a href="/blog/tags/cordova/" style="font-size: 10px;">cordova</a> <a href="/blog/tags/css/" style="font-size: 13.75px;">css</a> <a href="/blog/tags/docker/" style="font-size: 12.5px;">docker</a> <a href="/blog/tags/flutter/" style="font-size: 10px;">flutter</a> <a href="/blog/tags/front-end/" style="font-size: 10px;">front-end</a> <a href="/blog/tags/git/" style="font-size: 11.25px;">git</a> <a href="/blog/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/blog/tags/hibernate/" style="font-size: 11.25px;">hibernate</a> <a href="/blog/tags/html/" style="font-size: 17.5px;">html</a> <a href="/blog/tags/ide/" style="font-size: 10px;">ide</a> <a href="/blog/tags/ionic/" style="font-size: 10px;">ionic</a> <a href="/blog/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/blog/tags/java/" style="font-size: 18.75px;">java</a> <a href="/blog/tags/jpa/" style="font-size: 10px;">jpa</a> <a href="/blog/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/blog/tags/js/" style="font-size: 20px;">js</a> <a href="/blog/tags/linux/" style="font-size: 16.25px;">linux</a> <a href="/blog/tags/mongodb/" style="font-size: 15px;">mongodb</a> <a href="/blog/tags/mybatis/" style="font-size: 10px;">mybatis</a> <a href="/blog/tags/node/" style="font-size: 12.5px;">node</a> <a href="/blog/tags/npm/" style="font-size: 10px;">npm</a> <a href="/blog/tags/python/" style="font-size: 11.25px;">python</a> <a href="/blog/tags/react/" style="font-size: 17.5px;">react</a> <a href="/blog/tags/react-native/" style="font-size: 15px;">react native</a> <a href="/blog/tags/react-%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">react 工具</a> <a href="/blog/tags/sdk/" style="font-size: 10px;">sdk</a> <a href="/blog/tags/spring/" style="font-size: 17.5px;">spring</a> <a href="/blog/tags/spring-mvc/" style="font-size: 12.5px;">spring mvc</a> <a href="/blog/tags/sql/" style="font-size: 10px;">sql</a> <a href="/blog/tags/ssh/" style="font-size: 10px;">ssh</a> <a href="/blog/tags/web/" style="font-size: 11.25px;">web</a> <a href="/blog/tags/webpack/" style="font-size: 10px;">webpack</a> <a href="/blog/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 10px;">人工智能</a> <a href="/blog/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/blog/tags/%E5%8A%B1%E5%BF%97/" style="font-size: 11.25px;">励志</a> <a href="/blog/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 15px;">工具</a> <a href="/blog/tags/%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/" style="font-size: 10px;">开发规范</a> <a href="/blog/tags/%E5%BE%AE%E4%BF%A1/" style="font-size: 12.5px;">微信</a> <a href="/blog/tags/%E6%89%AF%E6%B7%A1/" style="font-size: 10px;">扯淡</a> <a href="/blog/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 10px;">架构</a> <a href="/blog/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/" style="font-size: 10px;">树莓派</a> <a href="/blog/tags/%E7%9B%91%E6%8E%A7/" style="font-size: 10px;">监控</a>
+    </div>
+  </div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Jay. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+
+			
+		
+
+		
+</div>
+</footer>
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js"></script>
+<script src="/blog/js/gallery.js"></script>
+<script src="/blog/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.navbar').click(function(){
+      $('header nav').toggleClass('shownav');
+    });
+    var myWidth = 0;
+    function getSize(){
+      if( typeof( window.innerWidth ) == 'number' ) {
+        myWidth = window.innerWidth;
+      } else if( document.documentElement && document.documentElement.clientWidth) {
+        myWidth = document.documentElement.clientWidth;
+      };
+    };
+    var m = $('#main'),
+        a = $('#asidepart'),
+        c = $('.closeaside'),
+        o = $('.openaside');
+    c.click(function(){
+      a.addClass('fadeOut').css('display', 'none');
+      o.css('display', 'block').addClass('fadeIn');
+      m.addClass('moveMain');
+    });
+    o.click(function(){
+      o.css('display', 'none').removeClass('beforeFadeIn');
+      a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');
+      m.removeClass('moveMain');
+    });
+    $(window).scroll(function(){
+      o.css("top",Math.max(80,260-$(this).scrollTop()));
+    });
+    
+          getSize();
+          if (myWidth >= 1024) {
+            c.click();
+          }
+    
+    $(window).resize(function(){
+      getSize();
+      if (myWidth >= 1024) {
+        $('header nav').removeClass('shownav');
+      }else{
+        m.removeClass('moveMain');
+        a.css('display', 'block').removeClass('fadeOut');
+        o.css('display', 'none');
+        
+        $('#toc.toc-aside').css('display', 'none');
+        
+      }
+    });
+  });
+</script>
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    var ai = $(".article-content>iframe"),
+      ae = $(".article-content>embed"),
+      t = $("#toc"),
+      ta = $("#toc.toc-aside"),
+      o = $(".openaside"),
+      c = $(".closeaside");
+    if (ai.length > 0) {
+      ai.wrap('<div class="video-container" />');
+    }
+    if (ae.length > 0) {
+      ae.wrap('<div class="video-container" />');
+    }
+    c.click(function () {
+      ta.css("display", "block").addClass("fadeIn");
+    });
+    o.click(function () {
+      ta.css("display", "none");
+    });
+    $(window).scroll(function () {
+      ta.css("top", Math.max(140, 320 - $(this).scrollTop()));
+    });
+  });
+</script>
+    
+<link
+  rel="stylesheet"
+  href="/blog/fancybox/jquery.fancybox.css"
+  media="screen"
+  type="text/css"
+/>
+<script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+  $(document).ready(function () {
+    $(".article-content").each(function (i) {
+      $(this)
+        .find("img")
+        .each(function () {
+          if ($(this).parent().hasClass("fancybox")) return;
+          var alt = this.alt;
+          if (alt) $(this).after('<span class="caption">' + alt + "</span>");
+          $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+        });
+      $(this)
+        .find(".fancybox")
+        .each(function () {
+          $(this).attr("rel", "article" + i);
+        });
+    });
+    if ($.fancybox) {
+      $(".fancybox").fancybox();
+    }
+  });
+</script>
+
+
+<!-- Analytics Begin -->
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?aafa6fbc5fea21c51d792808bdaa3e44";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/blog/img/scrollup.png"/></a>
+	</div>
+	<script src="/blog/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+  </body>
+</html>
+
+
+
+<!--fork me on github-->
+<a id="forkme" href="https://github.com/ScorpionJay" target="_blank"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_darkblue_121621.png?resize=149%2C149" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
