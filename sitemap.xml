@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://scorpionjay.github.io/blog/2024/03/28/nps/</loc>
+    
+    <lastmod>2024-03-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://scorpionjay.github.io/blog/404.html</loc>
+    
+    <lastmod>2024-03-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://scorpionjay.github.io/blog/2024/03/28/next-js-learning/</loc>
     
     <lastmod>2024-03-28</lastmod>
@@ -21,15 +39,6 @@
   
   <url>
     <loc>https://scorpionjay.github.io/blog/project/index.html</loc>
-    
-    <lastmod>2024-03-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://scorpionjay.github.io/blog/404.html</loc>
     
     <lastmod>2024-03-28</lastmod>
     
