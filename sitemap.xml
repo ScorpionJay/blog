@@ -2,6 +2,33 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://scorpionjay.github.io/blog/2024/07/28/uniapp/</loc>
+    
+    <lastmod>2024-07-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://scorpionjay.github.io/blog/2024/07/28/tailwind-css/</loc>
+    
+    <lastmod>2024-07-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://scorpionjay.github.io/blog/2024/07/28/threejs/</loc>
+    
+    <lastmod>2024-07-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://scorpionjay.github.io/blog/cv.html</loc>
     
     <lastmod>2024-07-28</lastmod>
@@ -1500,6 +1527,20 @@
   
   <url>
     <loc>https://scorpionjay.github.io/blog/tags/%E6%89%AF%E6%B7%A1/</loc>
+    <lastmod>2024-07-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://scorpionjay.github.io/blog/tags/threejs/</loc>
+    <lastmod>2024-07-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://scorpionjay.github.io/blog/tags/uniapp/</loc>
     <lastmod>2024-07-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
